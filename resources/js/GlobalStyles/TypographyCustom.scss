@@ -1,0 +1,144 @@
+// TypographyStyles.scss
+
+:root {
+    // Display styles
+    --display-01-font-size: 80px;
+    --display-01-line-height: 80px;
+    --display-01-font-weight: 600;
+
+    --display-02-font-size: 72px;
+    --display-02-line-height: 74px;
+    --display-02-font-weight: 600;
+
+    --display-03-font-size: 64px;
+    --display-03-line-height: 68px;
+    --display-03-font-weight: 600;
+
+    // Heading styles
+    --heading-01-font-size: 48px;
+    --heading-01-line-height: 52px;
+    --heading-01-font-weight: 600;
+
+    --heading-02-font-size: 40px;
+    --heading-02-line-height: 48px;
+    --heading-02-font-weight: 600;
+
+    --heading-03-font-size: 32px;
+    --heading-03-line-height: 40px;
+    --heading-03-font-weight: 600;
+
+    --heading-04-font-size: 24px;
+    --heading-04-line-height: 32px;
+    --heading-04-font-weight: 600;
+
+    // Button styles
+    --button-l-font-size: 18px;
+    --button-l-line-height: 56px;
+    --button-l-font-weight: 600;
+
+    --button-m-font-size: 16px;
+    --button-m-line-height: 48px;
+    --button-m-font-weight: 600;
+
+    --button-s-font-size: 14px;
+    --button-s-line-height: 40px;
+    --button-s-font-weight: 600;
+
+    // Label styles
+    --label-xxl-font-size: 18px;
+    --label-xxl-line-height: 100px;
+    --label-xxl-font-weight: 500;
+
+    --label-xl-font-size: 16px;
+    --label-xl-line-height: 100px;
+    --label-xl-font-weight: 500;
+
+    --label-large-font-size: 14px;
+    --label-large-line-height: 100px;
+    --label-large-font-weight: 500;
+
+    --label-medium-font-size: 12px;
+    --label-medium-line-height: 12px;
+    --label-medium-font-weight: 500;
+
+    --label-small-font-size: 10px;
+    --label-small-line-height: 12px;
+    --label-small-font-weight: 500;
+
+    // Body styles
+    --body-xxxl-400-font-size: 24px;
+    --body-xxxl-400-line-height: 32px;
+    --body-xxxl-400-font-weight: 400;
+
+    --body-xxl-400-font-size: 20px;
+    --body-xxl-400-line-height: 32px;
+    --body-xxl-400-font-weight: 400;
+
+    --body-xxl-500-font-size: 20px;
+    --body-xxl-500-line-height: 26px;
+    --body-xxl-500-font-weight: 500;
+
+    --body-xxl-600-font-size: 20px;
+    --body-xxl-600-line-height: 26px;
+    --body-xxl-600-font-weight: 600;
+
+    --body-xl-400-font-size: 18px;
+    --body-xl-400-line-height: 24px;
+    --body-xl-400-font-weight: 400;
+
+    --body-xl-500-font-size: 18px;
+    --body-xl-500-line-height: 24px;
+    --body-xl-500-font-weight: 500;
+
+    --body-xl-600-font-size: 18px;
+    --body-xl-600-line-height: 24px;
+    --body-xl-600-font-weight: 600;
+
+    --body-large-400-font-size: 16px;
+    --body-large-400-line-height: 24px;
+    --body-large-400-font-weight: 400;
+
+    --body-large-500-font-size: 16px;
+    --body-large-500-line-height: 22px;
+    --body-large-500-font-weight: 500;
+
+    --body-large-600-font-size: 16px;
+    --body-large-600-line-height: 22px;
+    --body-large-600-font-weight: 600;
+
+    --body-medium-400-font-size: 14px;
+    --body-medium-400-line-height: 22px;
+    --body-medium-400-font-weight: 400;
+
+    --body-medium-500-font-size: 14px;
+    --body-medium-500-line-height: 20px;
+    --body-medium-500-font-weight: 500;
+
+    --body-medium-600-font-size: 14px;
+    --body-medium-600-line-height: 20px;
+    --body-medium-600-font-weight: 600;
+
+    --body-small-400-font-size: 12px;
+    --body-small-400-line-height: 16px;
+    --body-small-400-font-weight: 400;
+
+    --body-small-500-font-size: 12px;
+    --body-small-500-line-height: 16px;
+    --body-small-500-font-weight: 500;
+
+    --body-small-600-font-size: 12px;
+    --body-small-600-line-height: 16px;
+    --body-small-600-font-weight: 600;
+
+    --body-tiny-400-font-size: 10px;
+    --body-tiny-400-line-height: 10px;
+    --body-tiny-400-font-weight: 400;
+
+    --body-tiny-500-font-size: 10px;
+    --body-tiny-500-line-height: 10px;
+    --body-tiny-500-font-weight: 500;
+
+    --body-tiny-600-font-size: 10px;
+    --body-tiny-600-line-height: 10px;
+    --body-tiny-600-font-weight: 600;
+}
