@@ -1,23 +1,42 @@
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
 
-function Courses({courses = []}) {
+import "./styles.css";
+
+import { Grid, Pagination } from "swiper/modules";
+
+function Courses({ courses = [] }) {
     return (
         <div className="py-12">
             <div className="max-w-[1320px] mx-auto">
                 <Swiper
-                    className="spacer-x-4"
-                    slidesPerView={8}
+                    slidesPerView={3}
+                    grid={{
+                        rows: 2,
+                    }}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Grid, Pagination]}
+                    className="mySwiper"
                 >
                     {courses.map((course) => (
                         <div className="w-full h-full">
                             <div className="w-full h-1/2">
-                                <img className="h-full w-100 object-cover" src="" alt="" />
+                                <img
+                                    className="h-full w-100 object-cover"
+                                    src=""
+                                    alt=""
+                                />
                             </div>
                             <div className="w-full h1/2">
                                 <div className="flex justify-between">
-                                    .badges.py-
+                                    
                                 </div>
                             </div>
                         </div>
@@ -25,7 +44,7 @@ function Courses({courses = []}) {
                 </Swiper>
             </div>
         </div>
-    )
+    );
 }
 
 export default Courses;
