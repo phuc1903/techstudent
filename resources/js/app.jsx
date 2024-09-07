@@ -14,9 +14,9 @@ createInertiaApp({
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true });
         let page = pages[`./Pages/${name}.jsx`];
-        if(name.startsWith('/admin')) {
+        if(name.startsWith('/AdminPages')) {
             page.default.layout = page.default.layout || ((page) => <LayoutAdmin children={page} />);
-        }else {
+        }else if(name.startsWith('/UserPages')) {
             page.default.layout = page.default.layout || ((page) => <LayoutUser children={page} />);
         }
 
