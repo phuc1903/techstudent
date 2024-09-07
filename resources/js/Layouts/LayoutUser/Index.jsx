@@ -11,6 +11,7 @@ function LayoutUser({children}) {
             </main>
 
             <footer>
+                hello
             </footer>        
         </>
     );

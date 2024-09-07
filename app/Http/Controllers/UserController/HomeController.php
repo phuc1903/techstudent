@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
-        return inertia('UserPages/Home/Index', ['courses' => $courses]);
+        // $courses = Course::all();
+        return inertia('UserPages/Home/Index');
     }
 }

@@ -16,7 +16,7 @@ createInertiaApp({
         let page = pages[`./Pages/${name}.jsx`];
         if(name.startsWith('/AdminPages')) {
             page.default.layout = page.default.layout || ((page) => <LayoutAdmin children={page} />);
-        }else if(name.startsWith('/UserPages')) {
+        }else {
             page.default.layout = page.default.layout || ((page) => <LayoutUser children={page} />);
         }
 

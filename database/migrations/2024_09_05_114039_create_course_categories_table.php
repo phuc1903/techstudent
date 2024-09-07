@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('course_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
             $table->bigInteger('course_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');

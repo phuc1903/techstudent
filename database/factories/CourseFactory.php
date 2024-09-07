@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Instructor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,18 @@ class CourseFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'subtitle' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
+            'price' => $this->faker->randomNumber(3),
+            'is_free' => $this->faker->boolean(),
+            'instructor_id' => User::factory()->create(['role' => 'instructor'])->id,
+            'slug' => $this->faker->unique()->slug(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

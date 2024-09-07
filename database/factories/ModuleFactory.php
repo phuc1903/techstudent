@@ -17,7 +17,13 @@ class ModuleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'course_id' => \App\Models\Course::factory(),
+            'title' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
+            'order' => $this->faker->numberBetween(1, 10),
+            'slug' => $this->faker->unique()->slug(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

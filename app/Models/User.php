@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     public function instructorProfile()
     {
-        return $this->hasOne(InstructorProfile::class);
+        return $this->hasOne(Instructor::class);
     }
 
     public function certificates()

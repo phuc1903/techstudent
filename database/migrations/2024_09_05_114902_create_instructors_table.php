@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('instructor_profiles', function (Blueprint $table) {
+        Schema::create('instructors', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->text('bio')->nullable();
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('social_links')->nullable();
             $table->string('slug')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('rating')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('instructor_profiles');
+        Schema::dropIfExists('instructor');
     }
 };

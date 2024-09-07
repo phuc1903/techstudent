@@ -5,7 +5,7 @@ function Banner() {
         <section className="bg-gray-100 py-12 relative min-h-[300px] h-[450px] mt-[42px]">
             <div className="max-w-[1320px] h-full mx-auto flex flex-col lg:flex-row items-center lg:space-x-8">
                 {/* Left Section: Text */}
-                <div className="lg:w-1/2 text-center lg:text-left space-y-10">
+                <div className="lg:w-1/2 text-center lg:text-left space-y-10 z-10">
                     <h1 className="text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
                         Learn with expert anytime anywhere
                     </h1>
