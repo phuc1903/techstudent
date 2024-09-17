@@ -6,6 +6,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import GlobalStyles from './GlobalStyles/Index';
 import LayoutUser from './Layouts/LayoutUser/Index';
 import LayoutAdmin from './Layouts/LayoutAdmin/Index';
+import { TranslationProvider } from './Contexts/TranslationContext';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Tech Student';
 
@@ -14,9 +15,10 @@ createInertiaApp({
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true });
         let page = pages[`./Pages/${name}.jsx`];
-        if(name.startsWith('/AdminPages')) {
+
+        if (name.startsWith('/AdminPages')) {
             page.default.layout = page.default.layout || ((page) => <LayoutAdmin children={page} />);
-        }else {
+        } else {
             page.default.layout = page.default.layout || ((page) => <LayoutUser children={page} />);
         }
 
@@ -27,7 +29,9 @@ createInertiaApp({
 
         root.render(
             <GlobalStyles>
-                <App {...props} />
+                <TranslationProvider translations={props.initialPage.props.translations}>
+                    <App {...props} />
+                </TranslationProvider>
             </GlobalStyles>
         );
     },

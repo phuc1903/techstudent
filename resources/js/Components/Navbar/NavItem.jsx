@@ -27,7 +27,7 @@ function NavItem({ children, link = "", type = "button", current, props }) {
 
     return (
         <ComponentType
-            className={classNames("body-medium-500 transition text-gray-500 px-4 py-4 hover:text-primary", {'text-primary': current})}
+            className={classNames("menu transition text-gray-500 px-4 py-4 hover:text-primary", {'text-primary': current})}
             {...componentProps}
             {...props}
         >

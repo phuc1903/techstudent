@@ -5,7 +5,7 @@ import { Link } from "@inertiajs/react";
 
 const buttonVariants = {
     primary: {
-        default: "bg-primary text-white hover:bg-primary-200",
+        default: "bg-primary text-white hover:bg-primary-600",
         disabled: "bg-primary-600 text-white cursor-not-allowed",
         outline: "bg-white text-primary hover:text-primary-300",
         outlineDisabled: "bg-white-100 text-primary-600 cursor-not-allowed",
@@ -37,8 +37,9 @@ const Button = ({
     children,
     position = "button",
     link = "",
+    rounded = false,
     outline = false,
-    buttonType = "button",
+    buttonType = "submit",
     ...props
 }) => {
     const ComponentType =
@@ -67,9 +68,12 @@ const Button = ({
     return (
         <ComponentType
             className={classNames(
-                "inline-flex items-center justify-center transition",
+                "inline-flex items-center justify-center transition cursor-pointer",
                 sizeClasses,
-                variantClasses
+                variantClasses,
+                {
+                    'rounded-lg': rounded
+                }
             )}
             disabled={disabled}
             {...componentProps}
@@ -93,6 +97,7 @@ Button.propTypes = {
     iconPosition: PropTypes.oneOf(["left", "right"]),
     disabled: PropTypes.bool,
     outline: PropTypes.bool,
+    rounded: PropTypes.bool,
     children: PropTypes.node.isRequired,
     position: PropTypes.oneOf(["button", "href", "to"]),
     link: PropTypes.string,

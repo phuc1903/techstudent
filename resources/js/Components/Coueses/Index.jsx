@@ -5,8 +5,6 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import "./styles.css";
-
 import { Grid, Pagination } from "swiper/modules";
 
 function Courses({ courses = [] }) {
@@ -26,7 +24,7 @@ function Courses({ courses = [] }) {
                     className="mySwiper"
                 >
                     {courses.map((course) => (
-                        <div className="w-full h-full">
+                        <div className="w-full h-full" key={course.id}>
                             <div className="w-full h-1/2">
                                 <img
                                     className="h-full w-100 object-cover"

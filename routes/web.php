@@ -4,14 +4,28 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController\ContactController;
 use App\Http\Controllers\UserController\CoursesController;
 use App\Http\Controllers\UserController\HomeController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
+// Page Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Change Language
+Route::get('/change-language/{locale}', function($locale) {
+    if (in_array($locale, ['en', 'vi'])) {
+        session(['locale' => $locale]); // Lưu ngôn ngữ vào session
+    }
+    return redirect()->back(); // Quay lại trang trước đó
+})->name('change.language');
+
+// List Courses
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
+
+//Page Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+// Page About
 Route::get('/about', function() {
     return Inertia::render('UserPages/About/Index');
 })->name("about");

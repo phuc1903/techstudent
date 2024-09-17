@@ -267,13 +267,13 @@ const categories = [
     },
 ];
 
-function Categories() {
+function Categories({title}) {
     return (
         <div className="py-20 sm:py-10 md:py-16">
             <div className="max-w-[1320px] mx-auto ">
                 <div className="flex flex-col space-y-10">
                     <h1 className="text-gray-900 heading-02 text-center">
-                        Browse top category
+                        {title}
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {categories.map((cate) => (

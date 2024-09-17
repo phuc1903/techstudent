@@ -2,7 +2,7 @@ import Button from "@/Components/Button/Index";
 
 function Banner() {
     return (
-        <section className="bg-gray-100 py-12 relative min-h-[300px] h-[450px] mt-[42px]">
+        <section className="bg-gray-100 py-12 relative min-h-[300px] h-[450px]">
             <div className="max-w-[1320px] h-full mx-auto flex flex-col lg:flex-row items-center lg:space-x-8">
                 {/* Left Section: Text */}
                 <div className="lg:w-1/2 text-center lg:text-left space-y-10 z-10">

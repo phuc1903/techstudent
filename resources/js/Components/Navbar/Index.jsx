@@ -2,31 +2,61 @@ import {
     Disclosure,
     DisclosureButton,
     DisclosurePanel,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
 } from "@headlessui/react";
 
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import NavItem from "./NavItem";
 import Button from "@/Components/Button/Index";
-
-const navigation = [
-    {id: 1, title: "Home", href: route('home'), current: route().current('home')},
-    {id: 2, title: "Courses", href: route('courses'), current: route().current('courses')},
-    {id: 3, title: "About", href: route('about'), current: route().current('about') },
-    {id: 4, title: "Contact", href: route('contact'), current: route().current('contact') },
-    {id: 5, title: "Become a Instructor", href: route('instructor'), current: route().current('instructor') },
-];
+import Dropdown from "../Dropdown/Index";
+import { useTranslation } from "@/Contexts/TranslationContext";
+import { useMemo } from "react";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-function Navbar({user}) {
+function Navbar() {
+    const { translations: t } = useTranslation();
+
+    const navigation = useMemo(() => [
+        {
+            id: 1,
+            title: t.navbar.home,
+            href: route("home"),
+            current: route().current("home"),
+        },
+        {
+            id: 2,
+            title: t.navbar.courses,
+            href: route("courses"),
+            current: route().current("courses"),
+        },
+        {
+            id: 3,
+            title: t.navbar.about,
+            href: route("about"),
+            current: route().current("about"),
+        },
+        {
+            id: 4,
+            title: t.navbar.contact,
+            href: route("contact"),
+            current: route().current("contact"),
+        },
+        {
+            id: 5,
+            title: t.navbar.instructor,
+            href: route("instructor"),
+            current: route().current("instructor"),
+        },
+    ], [t]);
+
+
     return (
-        <Disclosure as="nav" className="bg-white">
+        <Disclosure
+            as="nav"
+            className="height-header bg-white fixed z-40 top-0 left-0 right-0"
+        >
             <div className="mx-auto px-8 py-6 sm:px-4 sm:py-3 md:px-6 md:py-4">
                 <div className="relative flex items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -47,12 +77,12 @@ function Navbar({user}) {
                         <div className="flex flex-shrink-0 w-[173px] items-center">
                             <img
                                 alt="Your Company"
-                                src="images/LOGO CUA FUCK-03.png"
+                                src="images/TechStudent.png"
                                 className="w-full object-cover"
                             />
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
-                            <div className="flex space-x-4">
+                            <div className="flex">
                                 {navigation.map((item) => (
                                     <NavItem
                                         key={item.title}
@@ -66,63 +96,95 @@ function Navbar({user}) {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        
-                        <div className="flex items-center space-x-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    <div className="flex items-center pr-2 sm:ml-6 sm:pr-0">
+                        <div className="hidden items-center space-x-6 lg:flex">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="size-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                                />
                             </svg>
+                            <Dropdown
+                                icon={
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="size-6"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
+                                        />
+                                    </svg>
+                                }
+                                children={[
+                                    {
+                                        title: t.vietnamese,
+                                        link: route("change.language", "vi"),
+                                    },
+                                    {
+                                        title: t.english,
+                                        link: route("change.language", "en"),
+                                    },
+                                ]}
+                            />
                             <div className="flex space-x-3">
-                                <Button type="primarySecondary" size="medium" position="to" link={route('register')}>Create Account</Button>
-                                <Button type="primary" size="medium" position="to" link={route('login')}>Sign In</Button>
+                                <Button
+                                    type="primarySecondary"
+                                    size="medium"
+                                    position="to"
+                                    link={route("register")}
+                                >
+                                    Create Account
+                                </Button>
+                                <Button
+                                    type="primary"
+                                    size="medium"
+                                    position="to"
+                                    link={route("login")}
+                                >
+                                    Sign In
+                                </Button>
                             </div>
                         </div>
-
-                        {/* Profile dropdown */}
-                        <Menu as="div" className="relative ml-3">
-                            <div>
-                                <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                    <span className="absolute -inset-1.5" />
-                                    <span className="sr-only">
-                                        Open user menu
-                                    </span>
-                                    <img
-                                        alt=""
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        className="h-8 w-8 rounded-full"
-                                    />
-                                </MenuButton>
-                            </div>
-                            <MenuItems
-                                transition
-                                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-                            >
-                                <MenuItem>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
-                                    >
-                                        Your Profile
-                                    </a>
-                                </MenuItem>
-                                <MenuItem>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
-                                    >
-                                        Settings
-                                    </a>
-                                </MenuItem>
-                                <MenuItem>
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
-                                    >
-                                        Sign out
-                                    </a>
-                                </MenuItem>
-                            </MenuItems>
-                        </Menu>
+                        <Dropdown
+                            title="Open user menu"
+                            img={
+                                <img
+                                    alt=""
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    className="h-8 w-8 rounded-full ml-2"
+                                />
+                            }
+                            children={[
+                                {
+                                    title: "Hồ sơ của bạn",
+                                    link: route("profile.edit"),
+                                },
+                                {
+                                    title: "Cài đặt",
+                                    link: "/setting",
+                                },
+                                {
+                                    title: "Đăng xuất",
+                                    type: "form",
+                                    method: "post",
+                                    link: route("logout"),
+                                },
+                            ]}
+                        />
                     </div>
                 </div>
             </div>

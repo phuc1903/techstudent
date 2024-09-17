@@ -1,4 +1,5 @@
 import Navbar from "@/Components/Navbar/Index";
+import Footer from "./Components/Footer/Index";
 
 function LayoutUser({children}) {
     return (  
@@ -6,12 +7,12 @@ function LayoutUser({children}) {
             <header>
                 <Navbar/>
             </header>
-            <main>
+            <main className="mt-header">
                 {children}
             </main>
 
             <footer>
-                hello
+                <Footer/>
             </footer>        
         </>
     );
