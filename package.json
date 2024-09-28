@@ -26,6 +26,7 @@
         "flowbite-react": "^0.10.1",
         "prop-types": "^15.8.1",
         "react-hook-form": "^7.53.0",
+        "react-quill": "^2.0.0",
         "react-router-dom": "^6.26.1",
         "swiper": "^11.1.12"
     }

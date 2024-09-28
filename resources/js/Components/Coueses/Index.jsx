@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -31,34 +31,36 @@ function Courses({ courses = [] }) {
                     style={{ height: '691px' }} 
                 >
                     {courses.map(course => (
-                        <SwiperSlide key={course.id} className="h-[333px] cursor-pointer bg-white">
-                            <div className="flex flex-col gap-[14px]">
-                                <Image classNames="h-[183px] w-full block" src="images/Course Images.png" alt={course.title} />
-                                <div className="flex flex-col gap-[10px] px-2">
-                                    <div className="inline-flex flex-wrap gap-1">
-                                        {course.categories.map(category => (
-                                            <Badges title={category.name} colorTitle="primary" background="primary-300"/>
-                                        ))}
+                        <Fragment key={course.id}>
+                            <SwiperSlide className="h-[333px] cursor-pointer bg-white">
+                                <div className="flex flex-col gap-[14px]">
+                                    <Image classNames="h-[183px] w-full block" src="images/Course Images.png" alt={course.title} />
+                                    <div className="flex flex-col gap-[10px] px-2">
+                                        <div className="inline-flex flex-wrap gap-1">
+                                            {course.categories.map(category => (
+                                                <Badges key={category.id} title={category.name} colorTitle="primary" background="primary-300"/>
+                                            ))}
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <div className="flex">
+                                                237.8k students
+                                            </div>
+                                            <div className="flex">
+                                                5 sao
+                                            </div>
+                                        </div>
+                                        <h4 className="line-clamp-2">{course.title}</h4>
                                     </div>
+                                    <div className="line w-full h-[1px] bg-gray-100"></div>
                                     <div className="flex justify-between">
                                         <div className="flex">
-                                            237.8k students
-                                        </div>
-                                        <div className="flex">
-                                            5 sao
+                                            <Image classNames="w-5 h-5 rounded-full block" src="images/Course Images.png" alt={course.title}/>
+                                            <span>{course.price}</span>
                                         </div>
                                     </div>
-                                    <h4 className="line-clamp-2">{course.title}</h4>
                                 </div>
-                                <div className="line w-full h-[1px] bg-gray-100"></div>
-                                <div className="flex justify-between">
-                                    <div className="flex">
-                                        <Image classNames="w-5 h-5 rounded-full block" src="images/Course Images.png" alt={course.title}/>
-                                        <span>{course.price}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
+                            </SwiperSlide>
+                        </Fragment>
                     ))}
                 </Swiper>
             </div>

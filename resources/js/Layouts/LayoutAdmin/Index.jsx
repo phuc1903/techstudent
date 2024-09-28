@@ -1,10 +1,16 @@
 
 function LayoutAdmin({children}) {
-    return (  
+    return (
         <>
-            <h1>Admin</h1>
-
-            {children}
+            <header>
+                <h1>header</h1>
+            </header>
+            <main>
+                {children}
+            </main>
+            <footer>
+                <h1>footer</h1>
+            </footer>
         </>
     );
 }

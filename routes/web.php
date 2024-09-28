@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController\ContactController;
 use App\Http\Controllers\UserController\CoursesController;
 use App\Http\Controllers\UserController\HomeController;
+use App\Http\Controllers\AdminController\UserController;
+use App\Http\Controllers\InstructorController\CourseController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -36,6 +38,14 @@ Route::get('/instructor', function() {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::prefix('instructor')->name('instructor.')->group(function () {
+    Route::resource('user', UserController::class);
+    Route::resource('course', CourseController::class);
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/products', [UserController::class, 'index'])->name('products');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
