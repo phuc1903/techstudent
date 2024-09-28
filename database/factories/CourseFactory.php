@@ -20,6 +20,7 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'image' => $this->faker->imageUrl(),
             'subtitle' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomNumber(3),

@@ -65,6 +65,10 @@ const Button = ({
         ...(position === "href" && { href: link }),
     };
 
+    const Icon = (icon, iconClass) => {
+        return (<span className={iconClass}>{icon}</span>)
+    }
+
     return (
         <ComponentType
             className={classNames(
@@ -79,13 +83,9 @@ const Button = ({
             {...componentProps}
             {...props}
         >
-            {icon && iconPosition === "left" && (
-                <span className={iconClass}>{icon}</span>
-            )}
+            {icon && iconPosition === "left" && <Icon icon={icon} iconClass={iconClass} />}
             {children}
-            {icon && iconPosition === "right" && (
-                <span className={iconClass}>{icon}</span>
-            )}
+            {icon && iconPosition === "right" && <Icon icon={icon} iconClass={iconClass} />}
         </ComponentType>
     );
 };

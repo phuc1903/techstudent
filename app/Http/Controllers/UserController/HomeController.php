@@ -10,7 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with("categories")->limit(10)->get();
+        // dd($courses);
         return inertia('UserPages/Home/Index', ['courses' => $courses, 'translations' => __('messages'),]);
     }
 }

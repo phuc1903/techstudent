@@ -1,43 +1,64 @@
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
 import "swiper/css";
-import "swiper/css/grid";
 import "swiper/css/pagination";
+import "swiper/css/grid";
+import "swiper/css/navigation";
 
-import { Grid, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Grid } from "swiper/modules";
+import Image from "../Images/Index";
+import Badges from "./Components/Badges/Index";
 
 function Courses({ courses = [] }) {
     return (
-        <div className="py-12">
+        <div className="py-12 bg-[#F5F7FA]">
             <div className="max-w-[1320px] mx-auto">
+                <h1 className="heading-02 text-center mb-10">Khóa học được bán nhiều</h1>
                 <Swiper
-                    slidesPerView={3}
+                    slidesPerView={5} 
                     grid={{
-                        rows: 2,
+                        rows: 1,
                     }}
-                    spaceBetween={30}
+                    spaceBetween={24}
+                    navigation
                     pagination={{
                         clickable: true,
                     }}
-                    modules={[Grid, Pagination]}
-                    className="mySwiper"
+                    modules={[Grid, Pagination, Navigation]}
+                    className="mySwiper w-full"
+                    style={{ height: '691px' }} 
                 >
-                    {courses.map((course) => (
-                        <div className="w-full h-full" key={course.id}>
-                            <div className="w-full h-1/2">
-                                <img
-                                    className="h-full w-100 object-cover"
-                                    src=""
-                                    alt=""
-                                />
-                            </div>
-                            <div className="w-full h1/2">
+                    {courses.map(course => (
+                        <SwiperSlide key={course.id} className="h-[333px] cursor-pointer bg-white">
+                            <div className="flex flex-col gap-[14px]">
+                                <Image classNames="h-[183px] w-full block" src="images/Course Images.png" alt={course.title} />
+                                <div className="flex flex-col gap-[10px] px-2">
+                                    <div className="inline-flex flex-wrap gap-1">
+                                        {course.categories.map(category => (
+                                            <Badges title={category.name} colorTitle="primary" background="primary-300"/>
+                                        ))}
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <div className="flex">
+                                            237.8k students
+                                        </div>
+                                        <div className="flex">
+                                            5 sao
+                                        </div>
+                                    </div>
+                                    <h4 className="line-clamp-2">{course.title}</h4>
+                                </div>
+                                <div className="line w-full h-[1px] bg-gray-100"></div>
                                 <div className="flex justify-between">
-                                    
+                                    <div className="flex">
+                                        <Image classNames="w-5 h-5 rounded-full block" src="images/Course Images.png" alt={course.title}/>
+                                        <span>{course.price}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </SwiperSlide>
                     ))}
                 </Swiper>
             </div>
