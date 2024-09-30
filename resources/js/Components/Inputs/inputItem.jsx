@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import { TextInput } from "flowbite-react";
+import PropTypes from "prop-types";
 
-function InputItem({ id, classes, type, iconLeft, iconRight, placeholder }) {
+function InputItem({ id, classes, register,type, iconLeft, iconRight, placeholder }) {
     return (
         <TextInput
+            register={register}
             id={id}
             type={type}
             icon={iconLeft}
@@ -15,6 +17,16 @@ function InputItem({ id, classes, type, iconLeft, iconRight, placeholder }) {
             )}
         />
     );
+}
+
+InputItem.Proptypes = {
+    id: PropTypes.string,
+    classNames: PropTypes.string,
+    register: PropTypes.object,
+    type: PropTypes.oneOf(["text", "email", "password"]),
+    iconLeft: PropTypes.element,
+    iconRight: PropTypes.element,
+    placeholder: PropTypes.string,
 }
 
 export default InputItem;
