@@ -10,6 +10,8 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
+        './resources/js/**/*.{js,jsx}',  
+        'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
         flowbite.content(),
     ],
 

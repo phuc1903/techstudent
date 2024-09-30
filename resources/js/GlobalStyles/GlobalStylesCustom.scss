@@ -10,6 +10,24 @@
     --height-header: 88px;
 }
 
+
+.width-container {
+    width: 1320px;
+}
+
+.quill {
+    display: flex;
+    flex-direction: column;
+    .ql-toolbar {
+        order: 2;
+    }
+    .ql-container {
+        order: 1;
+        border-top: 1px solid #ccc !important;
+    }
+}
+  
+
 .transition {
     transition: all 0.2s linear;
 }

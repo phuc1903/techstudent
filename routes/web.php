@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController\CoursesController;
 use App\Http\Controllers\UserController\HomeController;
 use App\Http\Controllers\AdminController\UserController;
 use App\Http\Controllers\InstructorController\CourseController;
+use App\Http\Controllers\InstructorController\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -40,6 +41,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::prefix('instructor')->name('instructor.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('user', UserController::class);
     Route::resource('course', CourseController::class);
     Route::get('/users', [UserController::class, 'index'])->name('users');

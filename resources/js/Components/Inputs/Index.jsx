@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import InputItem from "./inputItem";
 
 function Input({
     label,
@@ -17,11 +18,18 @@ function Input({
     ...props
 }) {
     console.log(status);
-    
+
     return (
         <div className="mb-1">
-            <label className="color-[#09090B] text-[14px] block mb-2" htmlFor="">{label}{required && <span className="text-[#DC2626]">*</span>}</label>
-            <div className={classNames("flex items-center dropshadow-input", {
+            <label
+                className="color-[#09090B] text-[14px] block mb-2"
+                htmlFor=""
+            >
+                {label}
+                {required && <span className="text-[#DC2626]">*</span>}
+            </label>
+            <div
+                className={classNames("flex items-center dropshadow-input", {
                     "bg-primary-300 border-2 border-primary":
                         status === "error",
                     "bg-success-300 border-2 border-success":
@@ -29,19 +37,15 @@ function Input({
                 })}
             >
                 {iconLeft && (
-                    <div className="icon cursor-pointer me-2" onClick={onClick}>{iconLeft}</div>
+                    <div className="icon cursor-pointer me-2" onClick={onClick}>
+                        {iconLeft}
+                    </div>
                 )}
-                <input
-                    {...register}
+                <InputItem
+                    register={register}
                     type={type}
                     placeholder={placeholder}
-                    className={classNames(
-                        "w-full placeholder-gray-500 border-none focus:border-none focus:ring-0 focus:outline-none",
-                        {
-                            "rounded-lg": rounded,
-                        },
-                        { classes }
-                    )}
+                    classes={classes}
                     {...props}
                 />
                 {iconRight && (
@@ -77,12 +81,19 @@ function Input({
                                 />
                             </svg>
                         ) : (
-                            iconRight
+                            <div
+                                className="icon cursor-pointer me-2"
+                                onClick={onClick}
+                            >
+                                {iconRight}
+                            </div>
                         )}
                     </div>
                 )}
             </div>
-            <span className="text-red-500 mt-1 text-sm block w-full">{message || <>&nbsp;</>}</span>
+            <span className="text-red-500 mt-1 text-sm block w-full">
+                {message || <>&nbsp;</>}
+            </span>
         </div>
     );
 }
@@ -97,7 +108,7 @@ Input.prototype = {
     iconLeft: PropTypes.element,
     status: PropTypes.oneOf(["success", "error"]),
     message: PropTypes.string,
-    required: PropTypes.bool
+    required: PropTypes.bool,
 };
 
 export default Input;

@@ -10,6 +10,7 @@ import Button from "@/Components/Button/Index";
 import Dropdown from "../Dropdown/Index";
 import { useTranslation } from "@/Contexts/TranslationContext";
 import { useMemo } from "react";
+import Image from "../Images/Index";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -75,11 +76,7 @@ function Navbar() {
                     </div>
                     <div className="flex flex-1 items-center space-x-[50px] justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 w-[173px] items-center">
-                            <img
-                                alt="Your Company"
-                                src="images/TechStudent.png"
-                                className="w-full object-cover"
-                            />
+                            <Image src="/images/TechStudent.png" classes="w-full object-cover" alt="logo"/>
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex">
