@@ -64,7 +64,7 @@ php artisan key:generate
 Run Migrate
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
 ## Start the server
