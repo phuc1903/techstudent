@@ -22,31 +22,36 @@ function Navbar() {
     const navigation = useMemo(() => [
         {
             id: 1,
-            title: t.navbar.home,
+            // title: t.navbar.home,
+            title: "Home",
             href: route("home"),
             current: route().current("home"),
         },
         {
             id: 2,
-            title: t.navbar.courses,
+            // title: t.navbar.courses,
+            title: "Courses",
             href: route("courses"),
             current: route().current("courses"),
         },
         {
             id: 3,
-            title: t.navbar.about,
+            // title: t.navbar.about,
+            title: "About",
             href: route("about"),
             current: route().current("about"),
         },
         {
             id: 4,
-            title: t.navbar.contact,
+            // title: t.navbar.contact,
+            title: "Contact",
             href: route("contact"),
             current: route().current("contact"),
         },
         {
             id: 5,
-            title: t.navbar.instructor,
+            // title: t.navbar.instructor,
+            title: "Instructor",
             href: route("instructor"),
             current: route().current("instructor"),
         },
@@ -58,7 +63,7 @@ function Navbar() {
             as="nav"
             className="height-header bg-white fixed z-40 top-0 left-0 right-0"
         >
-            <div className="mx-auto px-8 py-6 sm:px-4 sm:py-3 md:px-6 md:py-4">
+            <div className="width-container mx-auto py-6 sm:py-3 md:py-4">
                 <div className="relative flex items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                         <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -128,11 +133,13 @@ function Navbar() {
                                 }
                                 children={[
                                     {
-                                        title: t.vietnamese,
+                                        // title: t.vietnamese,
+                                        title: "Tiếng Việt",
                                         link: route("change.language", "vi"),
                                     },
                                     {
-                                        title: t.english,
+                                        // title: t.english,
+                                        title: "Tiếng Anh",
                                         link: route("change.language", "en"),
                                     },
                                 ]}

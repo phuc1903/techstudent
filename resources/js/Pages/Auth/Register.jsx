@@ -3,20 +3,29 @@ import { useForm as useFormInertia } from "@inertiajs/react";
 import { Head } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import Button from "@/Components/Button/Index";
-import Input from "@/Components/Inputs/Index";
-import LayoutUser from "@/Layouts/LayoutUser/Index";
-import { fieldPhone } from "@/Services/AuthServices/Index";
+import FieldEmail from "@/Services/AuthServices/FieldEmail";
+import { HiOutlineArrowRight, HiShoppingCart } from "react-icons/hi";
+import FieldPassword from "@/Services/AuthServices/FieldPassword";
+import FieldConfirmPassword from "@/Services/AuthServices/FieldConfirmPassword";
+import Index from "./Index";
+import { Label, Button as ButtonReact } from "flowbite-react";
+import CreateField from "@/Services/AuthServices/CreateField";
+import InputText from "@/Components/Inputs/InputText";
+import CheckBox from "@/Components/Inputs/CheckBox";
 
-function Login() {
+function Register() {
     const {
         register,
         handleSubmit,
         formState: { errors },
         trigger,
+        watch,
     } = useReactHookForm({
         mode: "onChange",
         reValidateMode: "onSubmit",
     });
+
+    const password = watch("password");
 
     const {
         data,
@@ -25,41 +34,88 @@ function Login() {
         errors: errorsInertia,
         processing,
     } = useFormInertia({
+        firstname: "",
+        lastname: "",
+        username: "",
         email: "",
         password: "",
+        password_confirmation: "",
+        term_condition: "",
     });
 
-    const fieldEmail = {
-        register: register("email", {
-            required: "Vui lòng nhập email",
-            pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Vui lòng nhập địa chỉ email hợp lệ",
+    const fieldFirstName = CreateField({
+        name: "firstname",
+        register,
+        errors,
+        errorsInertia,
+        validationRules: {
+            required: "Vui lòng nhập tên của bạn",
+            minLength: {
+                value: 2,
+                message: "Vui lòng nhập ít nhất 2 ký tự",
             },
-        }),
-        status: errors?.email || errorsInertia?.email ? "error" : "success",
-        message: errors?.email?.message || errorsInertia?.email,
-    };
+            maxLength: {
+                value: 40,
+                message: "Vui lòng nhập nhiều nhất 40 ký tự",
+            },
+        },
+    });
 
-    const fieldPassword = {
-        register: register("password", {
-            required: "Vui lòng nhập mật khẩu",
+    const fieldLastName = CreateField({
+        name: "lastname",
+        register,
+        errors,
+        errorsInertia,
+        validationRules: {
+            required: "Vui lòng nhập họ của bạn",
+            minLength: {
+                value: 2,
+                message: "Vui lòng nhập ít nhất 2 ký tự",
+            },
+            maxLength: {
+                value: 40,
+                message: "Vui lòng nhập nhiều nhất 40 ký tự",
+            },
+        },
+    });
+
+    const fieldUserName = CreateField({
+        name: "username",
+        register,
+        errors,
+        errorsInertia,
+        validationRules: {
+            required: "Vui lòng nhập tên tài khoản",
             minLength: {
                 value: 5,
                 message: "Vui lòng nhập ít nhất 5 ký tự",
             },
-        }),
-        status: errors?.password || (errorsInertia?.password && "error"),
-        message: errors?.password?.message || errorsInertia?.password,
-    };
+            maxLength: {
+                value: 50,
+                message: "Vui lòng nhập nhiều nhất 50 ký tự",
+            },
+        },
+    });
+
+    const fieldTermAndCondition = CreateField({
+        name: "term_condition",
+        register,
+        errors,
+        errorsInertia,
+        validationRules: {
+            required: "Bạn phải đồng ý với điều khoản",
+        },
+    });
 
     const onSubmit = (formData) => {
         setData(formData);
     };
 
     useEffect(() => {
+        console.log(data);
+
         if (data.email && data.password) {
-            post(route("login.store"));
+            post(route("register.store"));
         }
     }, [data]);
 
@@ -67,78 +123,113 @@ function Login() {
     const handleShowPassword = () => {
         setShowPassword((prev) => !prev);
     };
-
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const handleShowConfirmPassword = () => {
+        setShowConfirmPassword((prev) => !prev);
+    };
     return (
         <>
-            <Head title="Login" />
-            <div className="">
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex max-w-md mx-auto flex-col"
-                >
-                    <Input
-                        label="Email"
-                        placeholder="Email address ..."
-                        type="email"
-                        register={fieldEmail.register}
-                        status={fieldEmail.status}
-                        message={fieldEmail.message}
+            <Head title="Tạo tài khoản" />
+            <Index
+                image={false}
+                title="Tạo tài khoản của bạn"
+                urlImage="/images/image_register.png"
+            >
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="flex gap-[18px]">
+                        <InputText
+                            label="Họ của bạn"
+                            placeholder="Nhập họ của bạn"
+                            register={fieldLastName.register}
+                            status={fieldLastName.status}
+                            message={fieldLastName.message}
+                            required
+                            onChange={() => trigger(fieldLastName.name)}
+                        />
+                        <InputText
+                            label="Tên của bạn"
+                            placeholder="Nhập tên của bạn"
+                            register={fieldFirstName.register}
+                            status={fieldFirstName.status}
+                            message={fieldFirstName.message}
+                            required
+                            onChange={() => trigger(fieldFirstName.name)}
+                        />
+                    </div>
+                    <InputText
+                        label="Tên tài khoản"
+                        placeholder="Nhập tên tài khoản của bạn"
+                        register={fieldUserName.register}
+                        status={fieldUserName.status}
+                        message={fieldUserName.message}
                         required
-                        onBlur={() => trigger("email")}
+                        onChange={() => trigger(fieldUserName.name)}
+                    />
+                    <FieldEmail
+                        register={register}
+                        errors={errors}
+                        errorsInertia={errorsInertia}
+                        trigger={trigger}
                     />
 
-                    <Input
-                        label="Password"
-                        placeholder="Password ..."
-                        type={showPassword ? "text" : "password"}
-                        register={fieldPassword.register}
-                        status={fieldPassword.status}
-                        message={fieldPassword.message}
-                        required
-                        onBlur={() => trigger("password")}
-                        iconRight={
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                                onClick={handleShowPassword}
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d={
-                                        showPassword
-                                            ? "M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
-                                            : "M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                                    }
-                                />
-                            </svg>
-                        }
-                    />
+                    <div className="flex gap-[18px]">
+                        <FieldPassword
+                            register={register}
+                            errors={errors}
+                            errorsInertia={errorsInertia}
+                            trigger={trigger}
+                            handleIcon={handleShowPassword}
+                            showPassword={showPassword}
+                        />
+                        <FieldConfirmPassword
+                            register={register}
+                            errors={errors}
+                            errorsInertia={errorsInertia}
+                            trigger={trigger}
+                            handleIcon={handleShowConfirmPassword}
+                            showPassword={showConfirmPassword}
+                            password={password}
+                        />
+                    </div>
 
-                    <Input
-                        label="Phone"
-                        placeholder="phone address ..."
-                        type="number"
-                        register={fieldPhone.register}
-                        status={fieldPhone.status}
-                        message={fieldPhone.message}
-                        required
-                        onBlur={() => trigger("phone")}
-                    />
-
-                    <Button rounded={true} disabled={processing}>
-                        {processing ? "Đang đăng nhập..." : "Đăng nhập"}
-                    </Button>
+                    <div className="flex justify-between items-start">
+                        <CheckBox
+                            label="Chấp nhận điều khoản"
+                            register={fieldTermAndCondition.register}
+                            status={fieldTermAndCondition.status}
+                            message={fieldTermAndCondition.message}
+                            required
+                            onChange={() => trigger(fieldTermAndCondition.name)}
+                        />
+                        <div className="flex flex-col gap-[6px]">
+                            <Button rounded={true} disabled={processing}>
+                                {processing ? "Đang đăng ký..." : "Đăng ký"}
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="mt-10">
+                        <div className="flex items-center mb-6">
+                            <hr className="h-1 w-full" />
+                            <span className="px-2 uppercase text-nowrap label-large">
+                                Sign in with
+                            </span>
+                            <hr className="h-1 w-full" />
+                        </div>
+                        <div className="flex gap-6">
+                            <ButtonReact>
+                                <HiShoppingCart className=" h-5 w-5" />
+                                Buy now
+                            </ButtonReact>
+                            <ButtonReact>
+                                Choose plan
+                                <HiOutlineArrowRight className=" h-5 w-5" />
+                            </ButtonReact>
+                        </div>
+                    </div>
                 </form>
-            </div>
+            </Index>
         </>
     );
 }
 
-Login.layout = (page) => <LayoutUser children={page} />;
-
-export default Login;
+export default Register;

@@ -1,9 +1,8 @@
 import Image from "@/Components/Images/Index";
 import Navbar from "./Components/Navbar";
 import Footer from "@/Layouts/LayoutUser/Components/Footer/Index";
-import InputItem from "@/Components/Inputs/inputItem";
+import InputText from "@/Components/Inputs/InputText";
 import { useEffect, useState } from "react";
-import Input from "@/Components/Inputs/Index";
 import { HiSearch } from "react-icons/hi";
 
 function LayoutInstructor({ children }) {
@@ -41,7 +40,7 @@ function LayoutInstructor({ children }) {
                             </div>
                             <div className="flex gap-4 items-center h-full">
                                 <div className="flex">
-                                    <InputItem
+                                    <InputText
                                         placeholder="Search"
                                         type="text"
                                         iconLeft={HiSearch}

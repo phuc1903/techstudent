@@ -49,7 +49,7 @@ function Courses({ courses }) {
                             <SwiperSlide key={course.id} className="h-[333px] cursor-pointer bg-white">
                                 <div className="flex flex-col gap-[14px]">
                                     <Image
-                                        classNames="h-[183px] w-full block"
+                                        classes="h-[183px] w-full block"
                                         src="images/Course Images.png"
                                         alt={course.title}
                                     />
@@ -76,7 +76,7 @@ function Courses({ courses }) {
                                     <div className="flex justify-between">
                                         <div className="flex">
                                             <Image
-                                                classNames="w-5 h-5 rounded-full block"
+                                                classes="w-5 h-5 rounded-full block"
                                                 src="images/Course Images.png"
                                                 alt={course.title}
                                             />
