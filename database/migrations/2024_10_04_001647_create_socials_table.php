@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('socials', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('url');
-            $table->string('slug')->unique();
-            $table->foreign('lecture_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum("name", ["youtube", "tiktok", "facebook", "instagram", "zalo"])->nullable();
+            $table->string("url")->nullable();
+            $table->foreign("user_id")->references('id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('socials');
     }
 };

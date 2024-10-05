@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('module_id')->unsigned();
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('order')->default(0);
-            $table->enum('content_type', ['video', 'article', 'quiz']);
             $table->string('content_url')->nullable();
             $table->integer('duration')->nullable();
             $table->string('slug')->unique();
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('section_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('type_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

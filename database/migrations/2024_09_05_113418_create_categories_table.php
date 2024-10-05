@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->string('image');
             $table->string('slug')->unique();
             $table->bigInteger('parent_id')->unsigned()->nullable();
-            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

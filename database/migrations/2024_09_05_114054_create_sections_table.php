@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('course_id')->unsigned();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('url');
+            $table->text('knowledge')->nullable();
+            $table->integer('order')->default(0);
             $table->string('slug')->unique();
-            $table->foreign('lecture_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('modules');
     }
 };

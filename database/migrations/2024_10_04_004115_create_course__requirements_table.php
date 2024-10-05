@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('course__requirements', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('course_id')->unsigned();
             $table->string('title');
-            $table->text('description')->nullable();
             $table->integer('order')->default(0);
-            $table->string('slug')->unique();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('course__requirements');
     }
 };
