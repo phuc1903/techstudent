@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->enum('type', ["video", "post"])->nullable();
-            $table->foreign("lesson_id")->references("id")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('lesson_id')->unsigned();
+            $table->foreign("lesson_id")->references("id")->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

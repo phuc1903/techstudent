@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('image')->nullable();
             $table->string('description')->nullable();
-            $table->foreign('question_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->boolean('is_correct')->default(false);
+            $table->bigInteger('question_id')->unsigned();
+            $table->foreign('question_id')->references('id')->on('questions')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

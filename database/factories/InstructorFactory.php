@@ -21,11 +21,6 @@ class InstructorFactory extends Factory
             'user_id' => User::factory(),
             'bio' => $this->faker->paragraph(),
             'expertise' => $this->faker->word(),
-            'social_links' => json_encode([
-                'facebook' => $this->faker->url(),
-                'twitter' => $this->faker->url(),
-                'linkedin' => $this->faker->url(),
-            ]),
             'slug' => $this->faker->unique()->slug(),
             'rating' => $this->faker->numberBetween(1, 5),
             'created_at' => now(),

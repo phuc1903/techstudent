@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('action');
             $table->boolean('show')->default(false);
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

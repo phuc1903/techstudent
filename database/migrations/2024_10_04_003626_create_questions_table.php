@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->foreign('quiz_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('quiz_id')->unsigned();
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

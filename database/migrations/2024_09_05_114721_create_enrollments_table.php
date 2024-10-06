@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('student_id')->unsigned();
-            $table->bigInteger('course_id')->unsigned();
             $table->integer('progress')->default(0);
             $table->boolean('completed')->default(false);
             $table->string('slug')->unique();
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('course_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });

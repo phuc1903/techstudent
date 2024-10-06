@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('content_url')->nullable();
             $table->integer('duration')->nullable();
             $table->string('slug')->unique();
-            $table->foreign('section_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('type_id')->references('id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('section_id')->unsigned();
+            $table->foreign('section_id')->references('id')->on('sections')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('type_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
