@@ -4,9 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController\ContactController;
 use App\Http\Controllers\UserController\CoursesController;
 use App\Http\Controllers\UserController\HomeController;
-use App\Http\Controllers\AdminController\UserController;
-use App\Http\Controllers\InstructorController\CourseController;
-use App\Http\Controllers\InstructorController\DashboardController;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -40,14 +38,6 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::prefix('instructor')->name('instructor.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('user', UserController::class);
-    Route::resource('course', CourseController::class);
-    Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::get('/products', [UserController::class, 'index'])->name('products');
-});
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,4 +45,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/instructor.php';
 require __DIR__.'/auth.php';

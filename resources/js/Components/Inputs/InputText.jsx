@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 function InputText({
     id,
+    name,
     label,
     classes,
     register,
@@ -31,10 +32,10 @@ function InputText({
     );
 
     return (
-        <div className="w-full mb-3">
+        <div className="w-full">
             {label && (
                 <div className="mb-2 block">
-                    <Label htmlFor={id} value={label} />
+                    <Label htmlFor={name} value={label} />
                 </div>
             )}
             <div className="relative">
@@ -54,6 +55,7 @@ function InputText({
                     icon={iconLeft && icon}
                     rightIcon={iconRight && icon}
                     placeholder={placeholder}
+                    name={name}
                     {...props}
                 />
                 {(iconRight || iconLeft) && showIcon}
