@@ -51,7 +51,7 @@ function InputText({
                             </span>
                         )
                     }
-                    classes={classes}
+                    classNames={classes}
                     icon={iconLeft && icon}
                     rightIcon={iconRight && icon}
                     placeholder={placeholder}

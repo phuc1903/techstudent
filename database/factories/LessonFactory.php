@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class LessonFactory extends Factory
     public function definition(): array
     {
         return [
-            'module_id' => \App\Models\Module::factory(),
+            'module_id' => Lesson::factory(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
             'order' => $this->faker->numberBetween(1, 10),

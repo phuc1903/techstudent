@@ -52,8 +52,8 @@ function Navbar() {
             id: 5,
             // title: t.navbar.instructor,
             title: "Instructor",
-            href: route("instructor"),
-            current: route().current("instructor"),
+            href: "",
+            current: "",
         },
     ], [t]);
 

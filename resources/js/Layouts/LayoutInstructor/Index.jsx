@@ -28,7 +28,7 @@ function LayoutInstructor({ children }) {
     return (
         <>
             <div className="flex h-auto">
-                <div className="w-[300px] flex-shrink-0">
+                <div className="w-[300px] min-h-svh flex-shrink-0">
                     <Navbar />
                 </div>
                 <main className="flex-1 flex flex-col">

@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController\ContactController;
 use App\Http\Controllers\UserController\CoursesController;
 use App\Http\Controllers\UserController\HomeController;
 
+use App\Http\Controllers\UserController\MessageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -37,6 +38,8 @@ Route::get('/instructor', function() {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::get('/message', [MessageController::class, 'index'])->name('message');
 
 
 Route::middleware('auth')->group(function () {

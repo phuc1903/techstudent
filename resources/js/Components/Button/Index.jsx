@@ -40,6 +40,7 @@ const Button = ({
     rounded = false,
     outline = false,
     buttonType = "submit",
+    classes,
     ...props
 }) => {
     const ComponentType =
@@ -54,7 +55,7 @@ const Button = ({
         "px-8 py-4 text-lg sm:px-4 md:px-6 sm:py:3": size === "large",
     });
 
-    const iconClass = classNames({
+    const iconPositionClass = classNames({
         "ml-2": iconPosition === "right",
         "mr-2 order-0": iconPosition === "left",
     });
@@ -65,10 +66,6 @@ const Button = ({
         ...(position === "href" && { href: link }),
     };
 
-    const Icon = (icon, iconClass) => {
-        return (<span className={iconClass}>{icon}</span>)
-    }
-
     return (
         <ComponentType
             className={classNames(
@@ -77,15 +74,20 @@ const Button = ({
                 variantClasses,
                 {
                     'rounded-lg': rounded
-                }
+                },
+                classes,
             )}
             disabled={disabled}
             {...componentProps}
             {...props}
         >
-            {icon && iconPosition === "left" && <Icon icon={icon} iconClass={iconClass} />}
+            {icon && iconPosition === "left" && (
+                <span className={iconPositionClass}>{icon}</span>
+            )}
             {children}
-            {icon && iconPosition === "right" && <Icon icon={icon} iconClass={iconClass} />}
+            {icon && iconPosition === "right" && (
+                <span className={iconPositionClass}>{icon}</span>
+            )}
         </ComponentType>
     );
 };
