@@ -8,7 +8,7 @@ import { HiOutlineArrowRight, HiShoppingCart } from "react-icons/hi";
 import FieldPassword from "@/Services/AuthServices/FieldPassword";
 import FieldConfirmPassword from "@/Services/AuthServices/FieldConfirmPassword";
 import Index from "./Index";
-import { Label, Button as ButtonReact } from "flowbite-react";
+import { Button as ButtonReact } from "flowbite-react";
 import CreateField from "@/Services/AuthServices/CreateField";
 import InputText from "@/Components/Inputs/InputText";
 import CheckBox from "@/Components/Inputs/CheckBox";
@@ -136,7 +136,7 @@ function Register() {
                 urlImage="/images/image_register.png"
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex gap-[18px]">
+                    <div className="flex gap-[18px] mb-3">
                         <InputText
                             label="Họ của bạn"
                             placeholder="Nhập họ của bạn"
@@ -159,6 +159,7 @@ function Register() {
                     <InputText
                         label="Tên tài khoản"
                         placeholder="Nhập tên tài khoản của bạn"
+                        classes="mb-3"
                         register={fieldUserName.register}
                         status={fieldUserName.status}
                         message={fieldUserName.message}
@@ -172,7 +173,7 @@ function Register() {
                         trigger={trigger}
                     />
 
-                    <div className="flex gap-[18px]">
+                    <div className="flex gap-[18px] mb-3">
                         <FieldPassword
                             register={register}
                             errors={errors}

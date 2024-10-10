@@ -32,13 +32,13 @@ function InputText({
     );
 
     return (
-        <div className="w-full">
+        <div className="w-full h-full">
             {label && (
                 <div className="mb-2 block">
                     <Label htmlFor={name} value={label} />
                 </div>
             )}
-            <div className="relative">
+            <div className="relative h-full">
                 <TextInput
                     {...register}
                     id={id}
@@ -51,7 +51,7 @@ function InputText({
                             </span>
                         )
                     }
-                    classNames={classes}
+                    className={classes}
                     icon={iconLeft && icon}
                     rightIcon={iconRight && icon}
                     placeholder={placeholder}

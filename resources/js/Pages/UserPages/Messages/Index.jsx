@@ -95,7 +95,7 @@ function Message() {
                     </div>
                     <div className="px-6 pb-12 flex flex-col gap-6 border-b-2">
                         <div className="flex flex-col gap-6 overflow-y-scroll h-[500px]">
-                            <Button classes="w-[65px] ">Today</Button>
+                            <Button classes="w-[65px] mx-auto">Today</Button>
                             <MessageByUser my={true} />
                             <MessageByUser />
                             <MessageByUser my={true} />
@@ -112,12 +112,16 @@ function Message() {
                             <MessageByUser />
                         </div>
                     </div>
-                    <div className="flex justify-between p-6 gap-5 h-[48px]">
+                    <form className="flex justify-between p-6 gap-5 h-[96px]">
                         <div className="w-full h-full">
-                            <TextInput iconLeft={true} icon={HiSearch} classes="w-full h-full" />
+                            <TextInput
+                                iconLeft={true}
+                                icon={HiSearch}
+                                classes="w-full h-full"
+                            />
                         </div>
                         <Button>Send</Button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </>

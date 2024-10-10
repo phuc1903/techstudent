@@ -22,6 +22,7 @@ export default function FieldEmail({ register, errors, errorsInertia, trigger })
             status={field.status}
             message={field.message}
             required
+            classes="mb-3"
             onBlur={() => trigger("email")}
         />
     );

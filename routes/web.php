@@ -6,12 +6,18 @@ use App\Http\Controllers\UserController\CoursesController;
 use App\Http\Controllers\UserController\HomeController;
 
 use App\Http\Controllers\UserController\MessageController;
+use App\Http\Controllers\UserController\SettingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
 // Page Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Page Settings
+
+Route::get('/settings/{user}', [SettingController::class, 'index'])->name('setting');
+Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
 
 // Change Language
 Route::get('/change-language/{locale}', function($locale) {

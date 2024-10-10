@@ -27,6 +27,7 @@ function FieldPassword({ register, errors, errorsInertia, trigger, handleIcon, s
             message={field.message}
             handleIcon={handleIcon}
             required
+            classes="mb-3"
             onBlur={() => trigger("password")}
             iconRight={true}
             icon={showPassword ? HiEye : HiEyeOff}
