@@ -1,6 +1,8 @@
 import ButtonStatus from "@/Components/Button/ButtonStatus";
+import SkeletonLoader from "@/Services/SkeletonLoader/Index";
 
-const categories = [
+
+const categoriesFake = [
     {
         id: 1,
         icon: (
@@ -266,8 +268,52 @@ const categories = [
         quantity: 959,
     },
 ];
+function Categories({ title, categories }) {
 
-function Categories({title}) {
+    const renderSkeleton = () => (
+        <>
+            {Array(4)
+                .fill()
+                .map((_, index) => (
+                    <div
+                        key={index}
+                        className="flex items-center bg-gray-200 p-5 shadow-[0_5px_5px_-5px_rgba(0,0,0,0.3)] animate-pulse"
+                    >
+                        <div className="flex items-center gap-5 justify-center">
+                            <div className="p-4 bg-gray-300 w-12 h-12"></div>
+                            <div className="flex flex-col gap-2">
+                                <div className="h-4 bg-gray-300 w-24"></div>
+                                <div className="h-3 bg-gray-300 w-16"></div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+        </>
+    );
+
+    const renderContent = () => (
+        <>
+            {categoriesFake.map((cate) => (
+                <div
+                    key={cate.id}
+                    className={`flex items-center ${cate.backgroundColor} p-5 shadow-[0_5px_5px_-5px_rgba(0,0,0,0.3)] hover:scale-110 transition cursor-pointer`}
+                >
+                    <div className="flex items-center gap-5 justify-center">
+                        <div className="p-4 bg-white">{cate.icon}</div>
+                        <div className="flex flex-col gap-2">
+                            <h3 className="text-base text-gray-900 font-bold">
+                                {cate.label}
+                            </h3>
+                            <span className="text-sm text-gray-600">
+                                {cate.quantity} Courses
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </>
+    );
+
     return (
         <div className="py-20 sm:py-10 md:py-16">
             <div className="max-w-[1320px] mx-auto ">
@@ -276,30 +322,22 @@ function Categories({title}) {
                         {title}
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {categories.map((cate) => (
-                            <div
-                                key={cate.id}
-                                className={`flex items-center ${cate.backgroundColor} p-5 shadow-[0_5px_5px_-5px_rgba(0,0,0,0.3)] hover:scale-110 transition cursor-pointer`}
-                            >
-                                <div className="flex items-center gap-5 justify-center">
-                                    <div className="p-4 bg-white">
-                                        {cate.icon}
-                                    </div>
-                                    <div className="flex flex-col gap-2">
-                                        <h3 className="text-base text-gray-900 font-bold">
-                                            {cate.label}
-                                        </h3>
-                                        <span className="text-sm text-gray-600">
-                                            {cate.quantity} Courses
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                        <SkeletonLoader
+                            data={categoriesFake}
+                            renderContent={renderContent}
+                            renderSkeleton={renderSkeleton}
+                        />
                     </div>
                     <div className="flex items-center justify-center space-x-3">
-                        <div className="text-gray-700">We have more category & subcategory.</div>
-                        <ButtonStatus label="Browse All" color="text-primary" type="to" link=""/>
+                        <div className="text-gray-700">
+                            We have more category & subcategory.
+                        </div>
+                        <ButtonStatus
+                            label="Browse All"
+                            color="text-primary"
+                            type="to"
+                            link=""
+                        />
                     </div>
                 </div>
             </div>

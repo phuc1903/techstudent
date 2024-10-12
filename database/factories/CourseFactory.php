@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Instructor;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
@@ -20,13 +19,14 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'image' => $this->faker->imageUrl(),
+            'thumbnail' => $this->faker->imageUrl(),
             'subtitle' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'price' => $this->faker->randomNumber(3),
+            'price' => $this->faker->randomNumber(4),
             'is_free' => $this->faker->boolean(),
-            'instructor_id' => User::factory()->create(['role' => 'instructor'])->id,
-            'slug' => $this->faker->unique()->slug(),
+            'trailer' => $this->faker->url(),
+            'level' => $this->faker->randomElement(['beginner', 'intermediate', 'expert']),
+            'slug' => Str::slug($this->faker->sentence()),
             'created_at' => now(),
             'updated_at' => now(),
         ];

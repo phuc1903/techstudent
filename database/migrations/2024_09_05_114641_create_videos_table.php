@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('url');
+            $table->text('url');
             $table->string('slug')->unique();
             $table->bigInteger('lecture_id')->unsigned();
             $table->foreign('lecture_id')->references('id')->on('lectures')->cascadeOnDelete()->cascadeOnUpdate();

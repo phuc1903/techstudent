@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price')->default(0);
             $table->boolean('is_free')->default(true);
-            $table->string('trailer');
+            $table->text('trailer');
             $table->enum('level', ["beginner", "intermediate", "expert"])->default("beginner");
             $table->string('slug')->unique();
             $table->timestamps();
