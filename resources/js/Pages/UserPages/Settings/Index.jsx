@@ -8,7 +8,7 @@ import CreateField from "@/Services/AuthServices/CreateField";
 import InputText from "@/Components/Inputs/InputText";
 import Button from "@/Components/Button/Index";
 
-function Settings() {
+function Settings({user}) {
     const {
         register,
         handleSubmit,
@@ -26,11 +26,11 @@ function Settings() {
         errors: errorsInertia,
         processing,
     } = useFormInertia({
-        fullname: "",
-        username: "",
-        phone: "",
-        title: "",
-        bio: "",
+        fullname: user.fullname || "",
+        username: user.username || "",
+        phone: user.phone || "",
+        title: user.title || "",
+        bio: user.bio || "",
     });
     const [imageSrc, setImageSrc] = useState(null);
     const fileInputRef = useRef(null);

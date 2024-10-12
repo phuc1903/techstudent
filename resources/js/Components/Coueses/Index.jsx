@@ -5,7 +5,7 @@ import "swiper/css/grid";
 import "swiper/css/navigation";
 import { Navigation, Pagination, Grid } from "swiper/modules";
 import Image from "../Images/Index";
-import Badges from "./Components/Badges/Index";
+import Badges from "@/Components/Badges/Index";
 import { useState, useEffect } from "react";
 
 function Courses({ courses }) {

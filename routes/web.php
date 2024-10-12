@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController\HomeController;
 
 use App\Http\Controllers\UserController\MessageController;
 use App\Http\Controllers\UserController\SettingController;
+use App\Http\Controllers\UserController\SingleCourseController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/settings/{user}', [SettingController::class, 'index'])->name('setting');
 Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
+
+// Single Course
+
+Route::get('/course/{course}', [SingleCourseController::class, 'index'])->name('single.course');
 
 // Change Language
 Route::get('/change-language/{locale}', function($locale) {
