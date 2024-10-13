@@ -6,10 +6,13 @@ import "swiper/css/navigation";
 import { Navigation, Pagination, Grid } from "swiper/modules";
 import Image from "../Images/Index";
 import Badges from "@/Components/Badges/Index";
-import { useState, useEffect } from "react";
 import SkeletonLoader from "@/Services/SkeletonLoader/Index";
+import Hover from "./Hover";
+import { useState } from "react";
 
 function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
+
+    const [hover, setHover] = useState(false);
 
     const renderSkeleton = () => (
         <div className="grid grid-cols-5 gap-6">
@@ -42,7 +45,9 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
             {courses.map((course) => (
                 <SwiperSlide
                     key={course.id}
-                    className="h-[333px] cursor-pointer bg-white"
+                    className="h-[333px] cursor-pointer bg-white relative"
+                    onMouseEnter={() => setHover(true)}
+                    onMouseLeave={() => setHover(false)}
                 >
                     <div className="flex flex-col gap-[14px]">
                         <Image
@@ -79,6 +84,7 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
                             </div>
                         </div>
                     </div>
+                    <Hover show={hover} course={course}/>
                 </SwiperSlide>
             ))}
         </Swiper>
