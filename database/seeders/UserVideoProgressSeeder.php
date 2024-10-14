@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserVideoProgress;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class UserVideoProgressSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        UserVideoProgress::factory(10)->create();
     }
 }

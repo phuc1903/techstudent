@@ -18,10 +18,10 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(),
+            'title' => $this->faker->sentence(10),
             'thumbnail' => $this->faker->imageUrl(),
-            'subtitle' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
+            'subtitle' => $this->faker->sentence(10),
+            'description' => $this->faker->paragraph(200),
             'price' => $this->faker->randomNumber(4),
             'is_free' => $this->faker->boolean(),
             'trailer' => $this->faker->url(),

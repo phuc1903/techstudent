@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('video_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->integer('current_time')->default(0);
-            $table->integer('total_duration')->default(0);
+            $table->integer('progress')->default(0);
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

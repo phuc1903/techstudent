@@ -1,7 +1,5 @@
 import ButtonStatus from "@/Components/Button/ButtonStatus";
-import Hover from "@/Components/Coueses/Hover";
 import SkeletonLoader from "@/Services/SkeletonLoader/Index";
-import { useState } from "react";
 
 const categoriesFake = [
     {
@@ -270,8 +268,6 @@ const categoriesFake = [
     },
 ];
 function Categories({ title, categories }) {
-    const [show, setShow] = useState(false);
-
     const renderSkeleton = () => (
         <>
             {Array(4)
@@ -297,10 +293,7 @@ function Categories({ title, categories }) {
         <>
             {categoriesFake.map((cate) => (
                 <div
-                    key={cate.id}
-                    className={`flex items-center ${cate.backgroundColor} p-5 shadow-[0_5px_5px_-5px_rgba(0,0,0,0.3)] hover:scale-110 transition cursor-pointer`}
-                    onMouseEnter={() => setShow(true)}
-                    onMouseLeave={() => setShow(false)}
+                    className={`category flex items-center ${cate.backgroundColor} p-5 shadow-[0_5px_5px_-5px_rgba(0,0,0,0.3)] hover:scale-110 transition cursor-pointer`}
                 >
                     <div className="flex items-center gap-5 justify-center">
                         <div className="p-4 bg-white">{cate.icon}</div>
@@ -313,7 +306,6 @@ function Categories({ title, categories }) {
                             </span>
                         </div>
                     </div>
-                    <Hover show={show} course={cate} />
                 </div>
             ))}
         </>

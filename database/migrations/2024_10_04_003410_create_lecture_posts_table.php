@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lecture_posts', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->bigInteger('lecture_id')->unsigned();
             $table->foreign('lecture_id')->references('id')->on('lectures')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

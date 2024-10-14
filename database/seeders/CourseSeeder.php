@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,9 +13,6 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        Course::factory(10)->create()->each(function ($course) {
-            $categories = Category::all()->random(2)->pluck('id');
-            $course->categories()->attach($categories);
-        });
+        Course::factory(10)->create();
     }
 }

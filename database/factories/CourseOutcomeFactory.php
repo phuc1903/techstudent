@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course_Outcome>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CourseOutcome>
  */
 class CourseOutcomeFactory extends Factory
 {
@@ -17,7 +18,11 @@ class CourseOutcomeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'course_id' => Course::factory(),
+            'order' => $this->faker->numberBetween(1, 10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

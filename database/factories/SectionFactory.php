@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +18,11 @@ class SectionFactory extends Factory
     public function definition(): array
     {
         return [
-            'course_id' => \App\Models\Course::factory(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
+            'course_id' => Course::factory(),
             'order' => $this->faker->numberBetween(1, 10),
-            'slug' => $this->faker->unique()->slug(),
+            'slug' => $this->faker->slug(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

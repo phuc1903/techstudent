@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course_Comment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CourseComment>
  */
 class CourseCommentFactory extends Factory
 {
@@ -17,7 +19,11 @@ class CourseCommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content' => $this->faker->text(),
+            'user_id' => User::factory(),
+            'course_id' => Course::factory(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

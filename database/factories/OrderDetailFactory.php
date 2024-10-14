@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order_Detail>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderDetail>
  */
 class OrderDetailFactory extends Factory
 {
@@ -17,7 +19,11 @@ class OrderDetailFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'order_id' => Order::factory(),
+            'course_id' => Course::factory(),
+            'price' => $this->faker->numberBetween(100, 1000),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

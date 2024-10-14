@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Lesson;
+use App\Models\Section;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,14 +20,14 @@ class LessonFactory extends Factory
     public function definition(): array
     {
         return [
-            'module_id' => Lesson::factory(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'order' => $this->faker->numberBetween(1, 10),
-            'content_type' => $this->faker->randomElement(['video', 'article', 'quiz']),
             'content_url' => $this->faker->url(),
-            'duration' => $this->faker->numberBetween(5, 120), // Thời gian tính bằng phút
-            'slug' => $this->faker->unique()->slug(),
+            'duration' => $this->faker->numberBetween(5, 120),
+            'slug' => $this->faker->slug(),
+            'section_id' => Section::factory(),
+            'type_id' => Type::factory(),
+            'order' => $this->faker->numberBetween(1, 10),
             'created_at' => now(),
             'updated_at' => now(),
         ];

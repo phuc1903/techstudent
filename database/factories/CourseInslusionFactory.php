@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course_Inslusion>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CourseInslusion>
  */
 class CourseInslusionFactory extends Factory
 {
@@ -17,7 +17,9 @@ class CourseInslusionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'inslusion' => $this->faker->sentence(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

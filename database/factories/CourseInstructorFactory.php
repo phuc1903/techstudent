@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
+use App\Models\Instructor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course_Instructor>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CourseInstructor>
  */
 class CourseInstructorFactory extends Factory
 {
@@ -17,7 +19,10 @@ class CourseInstructorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'course_id' => Course::factory(),
+            'instructor_id' => Instructor::factory(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

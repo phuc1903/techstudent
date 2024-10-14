@@ -2,18 +2,29 @@
 
 namespace Database\Factories;
 
-use App\Models\User_Quize;
+use App\Models\Quiz;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\UserQuiz;
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserQuiz>
+ */
 
 class UserQuizFactory extends Factory
 {
-    protected $model = User_Quize::class;
-
+     /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition()
     {
         return [
-            // Define the attributes for UserQuiz
+            'user_id' => User::factory(),
+            'quiz_id' => Quiz::factory(),
+            'score' => $this->faker->numberBetween(0, 100),
+            'completed' => $this->faker->boolean(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

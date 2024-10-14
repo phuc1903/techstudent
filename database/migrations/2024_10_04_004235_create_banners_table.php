@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('collection')->nullable();
             $table->string('title');
-            $table->string('decription')->nullable();
+            $table->text('description')->nullable();
             $table->string('image');
             $table->string('action');
             $table->boolean('show')->default(false);

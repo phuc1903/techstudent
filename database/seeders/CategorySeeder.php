@@ -13,8 +13,8 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(5)->create()->each(function ($parentCategory) {
-            Category::factory(5)->withParent($parentCategory->id)->create();
+        Category::factory(10)->create()->each(function ($parentCategory) {
+            Category::factory(10)->withParent($parentCategory->id)->create();
         });
     }
 }

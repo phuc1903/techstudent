@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class LectureFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(200),
+            'type' => $this->faker->randomElement(['video', 'post']),
+            'lesson_id' => Lesson::factory(),
+            'slug' => $this->faker->slug(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

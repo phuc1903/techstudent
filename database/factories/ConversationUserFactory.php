@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Conversation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Conversation_User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ConversationUser>
  */
 class ConversationUserFactory extends Factory
 {
@@ -17,7 +19,10 @@ class ConversationUserFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'conversation_id' => Conversation::factory(),
+            'user_id' => User::factory(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

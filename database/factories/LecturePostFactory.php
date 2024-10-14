@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Lecture;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lecture_Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LecturePost>
  */
 class LecturePostFactory extends Factory
 {
@@ -17,7 +18,11 @@ class LecturePostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content' => $this->faker->paragraph(),
+            'description' => $this->faker->sentence(),
+            'lecture_id' => Lecture::factory(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

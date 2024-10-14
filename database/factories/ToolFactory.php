@@ -17,7 +17,11 @@ class ToolFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word(),
+            'logo' => $this->faker->imageUrl(),
+            'slug' => $this->faker->slug(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

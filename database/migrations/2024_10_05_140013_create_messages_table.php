@@ -16,10 +16,8 @@ return new class extends Migration
             $table->text('message');
             $table->boolean('is_read')->default(false);
             $table->bigInteger('sender_id')->unsigned();
-            $table->bigInteger('receiver_id')->unsigned();
             $table->bigInteger('conversation_id')->unsigned();
             $table->foreign('sender_id')->references("id")->on('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('receiver_id')->references("id")->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('conversation_id')->references("id")->on('conversations')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

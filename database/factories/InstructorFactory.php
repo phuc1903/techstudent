@@ -18,11 +18,11 @@ class InstructorFactory extends Factory
     public function definition(): array
     {
         return [
+            'about' => $this->faker->paragraph(200),
+            'expertise' => $this->faker->jobTitle(),
+            'social_links' => $this->faker->url(),
+            'slug' => $this->faker->slug(),
             'user_id' => User::factory(),
-            'bio' => $this->faker->paragraph(),
-            'expertise' => $this->faker->word(),
-            'slug' => $this->faker->unique()->slug(),
-            'rating' => $this->faker->numberBetween(1, 5),
             'created_at' => now(),
             'updated_at' => now(),
         ];
