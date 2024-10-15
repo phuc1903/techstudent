@@ -49,33 +49,38 @@ class User extends Authenticatable
         ];
     }
 
-    public function courses()
-    {
-        return $this->hasMany(Course::class, 'instructor_id');
-    }
-
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class);
     }
 
-    public function reviews()
+    public function ratings()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(CourseRating::class);
     }
 
-    public function payments()
+    public function favorites()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Favorite::class);
     }
 
-    public function instructorProfile()
+    public function conversations()
     {
-        return $this->hasOne(Instructor::class);
+        return $this->belongsToMany(Conversation::class, 'conversation_users');
     }
 
-    public function certificates()
+    public function lessonsProgress()
     {
-        return $this->hasMany(Certificate::class);
+        return $this->hasMany(UserLesson::class);
+    }
+
+    public function quizzesProgress()
+    {
+        return $this->hasMany(UserQuiz::class);
+    }
+
+    public function videoProgress()
+    {
+        return $this->hasMany(UserVideoProgress::class);
     }
 }

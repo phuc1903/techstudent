@@ -15,13 +15,55 @@ class Course extends Model
         'description',
         'price',
         'is_free',
-        'instructor_id',
-        'slug'
+        'slug',
+        'thumbnail',
+        'trailer',
+        'level'
     ];
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'course_categories', 'course_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'course_categories');
+    }
+
+    public function tools()
+    {
+        return $this->belongsToMany(Tool::class, 'course_tools');
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(CourseRating::class);
+    }
+
+    public function instructors()
+    {
+        return $this->belongsToMany(Instructor::class, 'course_instructors');
+    }
+
+    public function outcomes()
+    {
+        return $this->hasMany(CourseOutcome::class);
+    }
+
+    public function requirements()
+    {
+        return $this->hasMany(CourseRequirement::class);
+    }
+
+    public function audiences()
+    {
+        return $this->hasMany(CourseAudience::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(CourseComment::class);
     }
 
     public function enrollments()
@@ -29,18 +71,18 @@ class Course extends Model
         return $this->hasMany(Enrollment::class);
     }
 
-    public function reviews()
+    public function orders()
     {
-        return $this->hasMany(CourseRating::class);
+        return $this->hasMany(OrderDetail::class, 'course_id');
     }
 
-    public function instructor()
+    public function inclusionSections()
     {
-        return $this->belongsTo(User::class, 'instructor_id');
+        return $this->hasMany(CourseInslusionSection::class);
     }
 
-    public function certificates()
+    public function quizzes()
     {
-        return $this->hasMany(Certificate::class);
+        return $this->hasMany(Quiz::class);
     }
 }

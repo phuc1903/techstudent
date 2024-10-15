@@ -17,13 +17,13 @@ class Enrollment extends Model
         'slug'
     ];
 
-    public function student()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

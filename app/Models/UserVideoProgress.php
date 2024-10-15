@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class UserVideoProgress extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'video_id',
+        'complete',
+        'progress'
+    ];
+
+    public function video()
+    {
+        return $this->belongsTo(Video::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -14,7 +14,8 @@ class Section extends Model
         'title',
         'description',
         'order',
-        'slug'
+        'slug',
+        'knowledge'
     ];
 
     public function course()

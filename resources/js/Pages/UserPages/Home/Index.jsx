@@ -10,6 +10,8 @@ import CoursesHighlyRated from "@/Components/Coueses/CoursesHighlyRated";
 
 function Home({ courses, translations, categories }) {
 
+    console.log(courses);
+    
     return (
         // <TranslationProvider translations={translations}>
         <>

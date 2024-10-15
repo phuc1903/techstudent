@@ -16,18 +16,23 @@ class Category extends Model
         'slug'
     ];
 
-    public function parent()
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_categories');
+    }
+
+    public function tools()
+    {
+        return $this->belongsToMany(Tool::class, 'category_tools');
+    }
+
+    public function parentCategory()
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    public function children()
+    public function childCategories()
     {
         return $this->hasMany(Category::class, 'parent_id');
-    }
-
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class, 'course_category', 'category_id', 'course_id');
     }
 }

@@ -18,8 +18,13 @@ class Instructor extends Model
         'rating'
     ];
 
-    public function user()
+    public function courses()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Course::class, 'course_instructors');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(InstructorRating::class);
     }
 }

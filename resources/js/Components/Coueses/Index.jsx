@@ -30,9 +30,6 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
         </div>
     );
 
-    console.log(courses);
-    
-
     const [placement, setPlacement] = useState("right");
 
     const handleMouseEnter = (e) => {
@@ -54,13 +51,13 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
             navigation
             pagination={{ clickable: true }}
             modules={[Grid, Pagination, Navigation]}
-            className="mySwiper w-full"
+            className="mySwiper"
             style={{ height: "691px" }}
         >
             {courses.map((course) => (
                 <SwiperSlide
                     key={course.id}
-                    className="h-[333px] cursor-pointer bg-white relative"
+                    className="h-auto cursor-pointer bg-white relative"
                 >
                     <Tippy
                         placement={placement}
@@ -107,11 +104,16 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
                                 <div className="line w-full h-[1px] bg-gray-100"></div>
                                 <div className="flex justify-between">
                                     <div className="flex">
-                                        <Image
-                                            classes="w-5 h-5 rounded-full block"
-                                            src="images/Course Images.png"
-                                            alt={course.title}
-                                        />
+                                        <div className="flex">
+                                            <Image
+                                                classes="w-5 h-5 rounded-full block"
+                                                src="images/Course Images.png"
+                                                alt={course.title}
+                                            />
+                                            {/* {course.instructor.map(i => (
+                                                <p className="body-small-500 text-gray-700 line-clamp-1">{i.expertise}</p>
+                                            ))} */}
+                                        </div>
                                         <span>{course.price}</span>
                                     </div>
                                 </div>
