@@ -8,15 +8,14 @@ import Courses from "@/Components/Coueses/Index";
 import CoursesHighlyRated from "@/Components/Coueses/CoursesHighlyRated";
 // import Hover from "@/Components/Coueses/Hover";
 
-function Home({ courses, translations }) {
-
+function Home({ courses, translations, categories }) {
 
     return (
         // <TranslationProvider translations={translations}>
         <>
             <Head title={translations.title} />
             <Banner />
-            <Categories title={translations.categories.title} />
+            <Categories categories={categories} title={translations.categories.title} />
             <Courses courses={courses} quantityPerRow={3} rowNumber={2} />
             <CoursesHighlyRated courses={courses}/>
             {/* <Hover/> */}

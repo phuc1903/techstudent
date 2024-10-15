@@ -9,6 +9,7 @@ import Image from "../Images/Index";
 import Badges from "@/Components/Badges/Index";
 import SkeletonLoader from "@/Services/SkeletonLoader/Index";
 import Hover from "./Hover";
+import { useState } from "react";
 
 function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
     const renderSkeleton = () => (
@@ -28,6 +29,9 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
                 ))}
         </div>
     );
+
+    console.log(courses);
+    
 
     const [placement, setPlacement] = useState("right");
 
@@ -61,10 +65,9 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
                     <Tippy
                         placement={placement}
                         interactive
-                        key={cate.id}
                         trigger="mouseenter click"
                         render={(atts) => (
-                            <Hover tabIndex="-1" course={cate} {...atts} />
+                            <Hover tabIndex="-1" course={course} {...atts} />
                         )}
                         offset={[0, 10]}
                         flip={true}
@@ -77,7 +80,7 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
                             <div className="flex flex-col gap-[14px]">
                                 <Image
                                     classes="h-[183px] w-full block"
-                                    src="images/Course Images.png"
+                                    src={course.thumbnail}
                                     alt={course.title}
                                 />
                                 <div className="flex flex-col gap-[10px] px-2">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class HomeController extends Controller
     {
         $courses = Course::with("categories")->limit(10)->get();
         // dd($courses);
-        return inertia('UserPages/Home/Index', ['courses' => $courses, 'translations' => __('messages'),]);
+        $categories = Category::limit(12)->get();
+        return inertia('UserPages/Home/Index', ['courses' => $courses, 'translations' => __('messages'), 'categories' => $categories]);
     }
 }

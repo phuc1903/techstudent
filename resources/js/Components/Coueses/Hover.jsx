@@ -47,7 +47,7 @@ function Hover({ course }) {
                                 />
                             </div>
                             <h4 className="body-xl-500 text-gray-900">
-                                {course.label}
+                                {course.title}
                             </h4>
                         </div>
                         <div className="size-12">
@@ -189,7 +189,7 @@ function Hover({ course }) {
 
                         <div className="flex">
                             <span className="body-medium-400 text-gray-700">
-                                Beginner
+                                {course.level}
                             </span>
                         </div>
                     </div>
@@ -219,7 +219,7 @@ function Hover({ course }) {
                 <hr />
                 <div className="flex justify-between px-5 body-xxl-600 text-gray-900">
                     <p>Giá tiền:</p>
-                    <p>2.000.000 VNĐ</p>
+                    <p>{course.price} VNĐ</p>
                 </div>
                 <hr />
                 <div className="flex flex-col gap-3 px-5">

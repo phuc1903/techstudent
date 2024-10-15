@@ -3,12 +3,7 @@ import Button from "../Button/Index";
 import Image from "../Images/Index";
 
 function CoursesHighlyRated({ courses }) {
-    let courseMain=null;
-    let coursesNew=null;
-
-    if(courses && courses.length > 0) {
-        let [courseMain, ...coursesNew] = courses;
-    }
+    let [courseMain, ...coursesNew] = courses;
 
     const renderMainContent = () => (
         <div className="grid gap-12">
@@ -51,8 +46,8 @@ function CoursesHighlyRated({ courses }) {
     const renderCourseNewContent = () => (
         <div className="grid gap-6">
             {/* list */}
-            {coursesNew.map((course) => (
-                <div className="grid grid-cols-7 gap-6">
+            {coursesNew.slice(0, 3).map((course) => (
+                <div key={course.id} className="grid grid-cols-7 gap-6">
                     <div className="col-span-3 h-[200px] relative">
                         <Image
                             classes="size-full object-cover"
@@ -82,7 +77,7 @@ function CoursesHighlyRated({ courses }) {
                     <div className="col-span-4">
                         <div className="flex flex-col justify-between size-full">
                             <div className="grid gap-3">
-                                <h4 className="heading-04 text-gray-900">
+                                <h4 className="heading-04 text-gray-900 line-clamp-2">
                                     {course.title}
                                 </h4>
                                 <span className="body-xxl-600 text-gray-600 line-clamp-2">
@@ -111,7 +106,10 @@ function CoursesHighlyRated({ courses }) {
             {Array(3)
                 .fill("")
                 .map((_, index) => (
-                    <div key={index} className="animate-pulse bg-white grid grid-cols-7 gap-6">
+                    <div
+                        key={index}
+                        className="animate-pulse bg-white grid grid-cols-7 gap-6"
+                    >
                         <div className="col-span-3 h-[200px] bg-gray-300 rounded-sm"></div>
                         <div className="col-span-4 h-full">
                             <div className="flex flex-col justify-between h-full">
@@ -139,15 +137,15 @@ function CoursesHighlyRated({ courses }) {
                             Một số khóa học được đánh giá cao nhất
                         </span>
                     </div>
-                    <div className="grid grid-cols-12 gap-6">
-                        <div className="col-span-5">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div className="col-span-12 lg:col-span-5">
                             <SkeletonLoader
-                                data={courseMain}
+                                data={courseMain ? courseMain : []}
                                 renderContent={renderMainContent}
                                 renderSkeleton={renderMainSkeleton}
                             />
                         </div>
-                        <div className="col-span-7">
+                        <div className="col-span-12 lg:col-span-7">
                             <SkeletonLoader
                                 data={coursesNew}
                                 renderContent={renderCourseNewContent}
