@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController\HomeController;
 use App\Http\Controllers\UserController\MessageController;
 use App\Http\Controllers\UserController\SettingController;
 use App\Http\Controllers\UserController\SingleCourseController;
+use App\Http\Controllers\UserController\SingleInstructorController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,10 +23,14 @@ Route::put('/settings', [SettingController::class, 'update'])->name('setting.upd
 
 // Single Course
 
-Route::get('/course/{course}', [SingleCourseController::class, 'index'])->name('single.course');
+Route::get('/course/{course:slug}', [SingleCourseController::class, 'index'])->name('single.course');
+
+// Single Instructor
+
+Route::get('/instructor/{instructor:slug}', [SingleInstructorController::class, 'index'])->name('single.instructor');
 
 // Change Language
-Route::get('/change-language/{locale}', function($locale) {
+Route::get('/change-language/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'vi'])) {
         session(['locale' => $locale]); // Lưu ngôn ngữ vào session
     }
@@ -39,12 +44,9 @@ Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Page About
-Route::get('/about', function() {
+Route::get('/about', function () {
     return Inertia::render('UserPages/About/Index');
 })->name("about");
-Route::get('/instructor', function() {
-    return Inertia::render('UserPages/About/Index');
-})->name("instructor");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -59,5 +61,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/instructor.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/instructor.php';
+require __DIR__ . '/auth.php';

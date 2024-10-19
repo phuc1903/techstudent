@@ -6,13 +6,18 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --height-header: 88px;
 }
 
 
 .width-container {
-    width: 1320px;
+    width: 100%;
+    max-width: 1320px;
     margin: 0 auto;
 }
 

@@ -27,4 +27,9 @@ class Instructor extends Model
     {
         return $this->hasMany(InstructorRating::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

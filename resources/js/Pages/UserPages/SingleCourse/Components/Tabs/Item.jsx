@@ -1,17 +1,18 @@
-import { Link } from "@inertiajs/react";
 import classNames from "classnames";
-function Item({tabActive,children}) {
+
+function Item({ tabActive, children, href }) {
+
     return (
         <div
             className={classNames("bg-white px-6 border-b-2", {
-                "border-primary-500": tabActive
+                "border-primary-500": tabActive,
             })}
         >
             <div className="p-4 text-center">
-                <Link href="#ac">
+                <a href={href}>
                     {children}
-                </Link>
-                </div>
+                </a>
+            </div>
         </div>
     );
 }
