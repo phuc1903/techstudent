@@ -14,6 +14,7 @@ import Instructor from "./Components/Instructor/Index";
 import Ratings from "@/Components/Ratings/Index";
 import Comment from "@/Components/Comment/Index";
 import TextIcon from "@/Components/Texts/TextIcon";
+import CourseContents from "@/Components/CourseContents/Index";
 
 const includes = [
     {
@@ -162,8 +163,6 @@ function SingleCourse({ course }) {
     const stars = CalculateStarRating(course.ratings);
     const [height, setHeight] = useState("");
     const heightTop = useRef();
-
-    console.log(course);
 
     useEffect(() => {
         if (heightTop.current) {
@@ -379,7 +378,7 @@ function SingleCourse({ course }) {
                                                 </ul>
                                             </div>
                                         </div>
-                                        {/* <div
+                                        <div
                                             id="#curriculum"
                                             className="grid gap-5"
                                         >
@@ -404,7 +403,7 @@ function SingleCourse({ course }) {
                                                             />
                                                         </svg>
                                                         <span className="body-medium-400 text-gray-700">
-                                                            6 Sections
+                                                            {course.sections.length} Sections
                                                         </span>
                                                     </div>
                                                     <div className="flex gap-[6px]">
@@ -429,7 +428,7 @@ function SingleCourse({ course }) {
                                                         </svg>
 
                                                         <span className="body-medium-400 text-gray-700">
-                                                            56 Lectures
+                                                        2 Lectures
                                                         </span>
                                                     </div>
                                                     <div className="flex gap-[6px]">
@@ -454,7 +453,8 @@ function SingleCourse({ course }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> */}
+                                            <CourseContents course={course} />
+                                        </div>
                                         <div
                                             id="instructor"
                                             className="grid gap-5"
