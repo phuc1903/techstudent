@@ -138,25 +138,28 @@ function Register() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex gap-[18px] mb-3">
                         <InputText
+                            name="lastname"
                             label="Họ của bạn"
                             placeholder="Nhập họ của bạn"
                             register={fieldLastName.register}
                             status={fieldLastName.status}
                             message={fieldLastName.message}
                             required
-                            onChange={() => trigger(fieldLastName.name)}
+                            onBlur={() => trigger(fieldLastName.name)}
                         />
                         <InputText
+                            name="firstname"
                             label="Tên của bạn"
                             placeholder="Nhập tên của bạn"
                             register={fieldFirstName.register}
                             status={fieldFirstName.status}
                             message={fieldFirstName.message}
                             required
-                            onChange={() => trigger(fieldFirstName.name)}
+                            onBlur={() => trigger(fieldFirstName.name)}
                         />
                     </div>
                     <InputText
+                        name="username"
                         label="Tên tài khoản"
                         placeholder="Nhập tên tài khoản của bạn"
                         classes="mb-3"
@@ -164,7 +167,7 @@ function Register() {
                         status={fieldUserName.status}
                         message={fieldUserName.message}
                         required
-                        onChange={() => trigger(fieldUserName.name)}
+                        onBlur={() => trigger(fieldUserName.name)}
                     />
                     <FieldEmail
                         register={register}
@@ -200,7 +203,7 @@ function Register() {
                             status={fieldTermAndCondition.status}
                             message={fieldTermAndCondition.message}
                             required
-                            onChange={() => trigger(fieldTermAndCondition.name)}
+                            onBlur={() => trigger(fieldTermAndCondition.name)}
                         />
                         <div className="flex flex-col gap-[6px]">
                             <Button rounded={true} disabled={processing}>

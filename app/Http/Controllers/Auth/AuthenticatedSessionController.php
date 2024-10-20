@@ -29,12 +29,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        dd($request);
-        // $request->authenticate();
+        $request->authenticate();
 
-        // $request->session()->regenerate();
+        $request->session()->regenerate();
 
-        // return redirect()->intended(route('home', absolute: false));
+        return redirect()->intended(route('home', absolute: false))->with('notifications', ['type' => 'success', 'message' => 'Bạn đã đăng nhập thành công']);
     }
 
     /**
