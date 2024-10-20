@@ -1,13 +1,10 @@
 import { useForm as useReactHookForm } from "react-hook-form";
 import { Link, useForm as useFormInertia } from "@inertiajs/react";
 import { Head } from "@inertiajs/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/Components/Button/Index";
 import FieldEmail from "@/Services/AuthServices/FieldEmail";
-import {
-    HiOutlineArrowRight,
-    HiShoppingCart,
-} from "react-icons/hi";
+import { HiOutlineArrowRight, HiShoppingCart } from "react-icons/hi";
 import FieldPassword from "@/Services/AuthServices/FieldPassword";
 import Index from "./Index";
 import { Checkbox, Label, Button as ButtonReact } from "flowbite-react";
@@ -36,22 +33,44 @@ function Login() {
 
     const onSubmit = (formData) => {
         setData(formData);
-    };
 
+    };
     useEffect(() => {
         if (data.email && data.password) {
             post(route("login.store"));
         }
     }, [data]);
 
+    const [showPassword, setShowPassword] = useState(false);
+    const handleShowPassword = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+
     return (
         <>
             <Head title="Login" />
-            <Index image={false} title="Đăng nhập vào tài khoản của bạn" urlImage="/images/image_sign_in.png">
+            <Index
+                image={false}
+                title="Đăng nhập vào tài khoản của bạn"
+                urlImage="/images/image_sign_in.png"
+            >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <FieldEmail register={register} errors={errors} errorsInertia={errorsInertia} trigger={trigger}/>
+                    <FieldEmail
+                        register={register}
+                        errors={errors}
+                        errorsInertia={errorsInertia}
+                        trigger={trigger}
+                    />
 
-                    <FieldPassword register={register} errors={errors} errorsInertia={errorsInertia} trigger={trigger} />
+                    <FieldPassword
+                        register={register}
+                        errors={errors}
+                        errorsInertia={errorsInertia}
+                        handleIcon={handleShowPassword}
+                        showPassword={showPassword}
+                        trigger={trigger}
+                    />
                     <div className="flex justify-between items-start">
                         <div className="flex items-center gap-2">
                             <Checkbox id="remember" />

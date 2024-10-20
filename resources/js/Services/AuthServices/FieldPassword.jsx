@@ -1,10 +1,15 @@
 import InputText from "@/Components/Inputs/InputText";
-import {
-    HiEye,
-    HiEyeOff,
-} from "react-icons/hi";
+import { useState } from "react";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
-function FieldPassword({ register, errors, errorsInertia, trigger, handleIcon, showPassword }) {
+function FieldPassword({
+    register,
+    errors,
+    errorsInertia,
+    trigger,
+    handleIcon,
+    showPassword,
+}) {
     const field = {
         register: register("password", {
             required: "Vui lòng nhập mật khẩu",
@@ -13,12 +18,14 @@ function FieldPassword({ register, errors, errorsInertia, trigger, handleIcon, s
                 message: "Vui lòng nhập ít nhất 8 ký tự",
             },
         }),
-        status: errors?.password || (errorsInertia?.password && "error"),
+        status: (errors?.password || errorsInertia?.password) && "error",
         message: errors?.password?.message || errorsInertia?.password,
     };
 
+
     return (
         <InputText
+            name="password"
             label="Mật khẩu"
             placeholder="Nhập mật khẩu ..."
             type={showPassword ? "text" : "password"}

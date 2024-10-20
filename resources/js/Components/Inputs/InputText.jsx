@@ -16,6 +16,7 @@ function InputText({
     iconRight,
     placeholder,
     handleIcon,
+    onBlur,
     props,
 }) {
     const showIcon = (
@@ -45,7 +46,7 @@ function InputText({
                     type={type}
                     color={status}
                     helperText={
-                        status && (
+                        status === "error" && (
                             <span className="text-red-500 mt-1 text-sm block w-full">
                                 {message}
                             </span>
@@ -56,6 +57,7 @@ function InputText({
                     rightIcon={iconRight && icon}
                     placeholder={placeholder}
                     name={name}
+                    onBlur={onBlur}
                     {...props}
                 />
                 {(iconRight || iconLeft) && showIcon}
@@ -66,7 +68,7 @@ function InputText({
 
 InputText.propTypes = {
     id: PropTypes.string,
-    classNames: PropTypes.string,
+    classes: PropTypes.string,
     register: PropTypes.object,
     iconLeft: PropTypes.bool,
     iconRight: PropTypes.bool,

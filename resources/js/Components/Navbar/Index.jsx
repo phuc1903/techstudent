@@ -11,6 +11,7 @@ import Dropdown from "../Dropdown/Index";
 import { useTranslation } from "@/Contexts/TranslationContext";
 import { useMemo } from "react";
 import Image from "../Images/Index";
+import { usePage } from "@inertiajs/react";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -57,6 +58,10 @@ function Navbar() {
         },
     ], [t]);
 
+    const { auth } = usePage().props;
+
+    console.log(auth.user);
+    
 
     return (
         <Disclosure
@@ -163,32 +168,38 @@ function Navbar() {
                                 </Button>
                             </div>
                         </div>
-                        <Dropdown
-                            title="Open user menu"
-                            img={
-                                <img
-                                    alt=""
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    className="h-8 w-8 rounded-full ml-2"
-                                />
-                            }
-                            children={[
-                                {
-                                    title: "Hồ sơ của bạn",
-                                    link: route("profile.edit"),
-                                },
-                                {
-                                    title: "Cài đặt",
-                                    link: "/setting",
-                                },
-                                {
-                                    title: "Đăng xuất",
-                                    type: "form",
-                                    method: "post",
-                                    link: route("logout"),
-                                },
-                            ]}
-                        />
+                        {auth.user && (
+                            <Dropdown
+                                title="Open user menu"
+                                img={
+                                    <img
+                                        alt=""
+                                        src={auth.user.avatar}
+                                        className="h-8 w-8 rounded-full ml-2"
+                                    />
+                                }
+                                children={[
+                                    {
+                                        title: "Hồ sơ của bạn",
+                                        link: route("profile.edit"),
+                                    },
+                                    {
+                                        title: "Cài đặt",
+                                        link: "/setting",
+                                    },
+                                    {
+                                        title: "Đăng xuất",
+                                        type: "form",
+                                        method: "post",
+                                        link: route("logout"),
+                                    },
+                                    {
+                                        title: "Dashboard",
+                                        link: route("instructor.dashboard")
+                                    }
+                                ]}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
