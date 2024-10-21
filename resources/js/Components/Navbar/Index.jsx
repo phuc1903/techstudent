@@ -194,8 +194,12 @@ function Navbar() {
                                         link: route("logout"),
                                     },
                                     {
-                                        title: "Dashboard",
+                                        title: "Dashboard Instructor",
                                         link: route("instructor.dashboard")
+                                    },
+                                    {
+                                        title: "Dashboard Admin",
+                                        link: route('admin.dashboard'),
                                     }
                                 ]}
                             />
