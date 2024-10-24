@@ -60,9 +60,6 @@ function Navbar() {
 
     const { auth } = usePage().props;
 
-    console.log(auth.user);
-    
-
     return (
         <Disclosure
             as="nav"

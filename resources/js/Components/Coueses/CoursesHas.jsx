@@ -6,14 +6,13 @@ import "swiper/css/navigation";
 
 import { Navigation, Grid } from "swiper/modules";
 import Image from "../Images/Index";
-import Badges from "@/Components/Badges/Index";
 import SkeletonLoader from "@/Services/SkeletonLoader/Index";
 import Hover from "./Hover";
 import { useState } from "react";
 import { Link } from "@inertiajs/react";
+import Button from "../Button/Index";
 
-
-function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
+function CoursesHas({ enrollments, quantityPerRow = 4, rowNumber = 1, title }) {
     const renderSkeleton = () => (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {Array(5)
@@ -32,7 +31,7 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
         </div>
     );
 
-    
+    console.log(enrollments);
 
     const [placement, setPlacement] = useState("right");
 
@@ -46,6 +45,8 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
             setPlacement("right");
         }
     };
+
+    var progress = "";
 
     const renderContent = () => (
         <Swiper
@@ -74,43 +75,44 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
             }}
             className="mySwiper"
         >
-            {courses.map((course) => (
+            {enrollments.map((enrollment) => (
                 <SwiperSlide
-                    key={course.id}
-                    className="h-auto cursor-pointer bg-white relative"
+                    key={enrollment.id}
+                    className="h-auto bg-white relative"
                 >
                     <Tippy
                         placement={placement}
                         interactive
                         trigger="mouseenter click"
                         render={(atts) => (
-                            <Hover tabIndex="-1" course={course} {...atts} />
+                            <Hover
+                                tabIndex="-1"
+                                course={enrollment.course}
+                                {...atts}
+                            />
                         )}
                         offset={[0, 10]}
                         boundary="viewport"
                     >
-                        <Link
-                            href={route('single.course', course)}
+                        <span
                             onMouseEnter={handleMouseEnter}
                             className="size-full"
                         >
                             <div className="flex flex-col gap-[14px]">
-                                <Image
-                                    classes="h-[183px] w-full block object-cover"
-                                    src={course.thumbnail}
-                                    alt={course.title}
-                                />
+                                <Link
+                                    href={route(
+                                        "single.course",
+                                        enrollment.course
+                                    )}
+                                    className="w-full h-[183px] cursor-pointer"
+                                >
+                                    <Image
+                                        classes="size-full block object-cover"
+                                        src={enrollment.course.thumbnail}
+                                        alt={enrollment.course.title}
+                                    />
+                                </Link>
                                 <div className="flex flex-col gap-[10px] px-2">
-                                    <div className="inline-flex flex-wrap gap-1">
-                                        {course.categories.map((category) => (
-                                            <Badges
-                                                key={category.id}
-                                                title={category.name}
-                                                colorTitle="primary"
-                                                background="primary-300"
-                                            />
-                                        ))}
-                                    </div>
                                     <div className="flex justify-between">
                                         <div className="flex">
                                             237.8k students
@@ -118,27 +120,31 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
                                         <div className="flex">5 sao</div>
                                     </div>
                                     <h4 className="line-clamp-2">
-                                        {course.title}
+                                        {enrollment.course.title}
                                     </h4>
                                 </div>
-                                <div className="line w-full h-[1px] bg-gray-100"></div>
-                                <div className="flex justify-between items-center">
-                                    <div className="flex items-center">
-                                        <Image
-                                            classes="w-5 h-5 rounded-full block"
-                                            src="images/Course Images.png"
-                                            alt={course.title}
-                                        />
-                                        <span className="ml-2 text-gray-700">
-                                            {course.instructor}
-                                        </span>
-                                    </div>
-                                    <span className="font-semibold text-gray-900">
-                                        {course.price}
-                                    </span>
+                                <div className="line w-full h-[1px] bg-gray-100 gap-x-4"></div>
+                                <div className="flex gap-6 flex-1 items-center px-4 pb-4 relative">
+                                    {!enrollment.progress == 0 ? (
+                                        <>
+                                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-transparent z-[1]"></div>
+                                            <div
+                                                className="absolute bottom-0 left-0 h-1 bg-primary-500 z-[2]"
+                                                style={{
+                                                    width: `${enrollment.progress}%`,
+                                                }} // Dynamically set the width based on progress
+                                            ></div>
+                                            <span className="button-s text-secondary-500 order-2">
+                                                {enrollment.progress}% Complete
+                                            </span>
+                                            <Button classes="order-1">Xem khóa học</Button>
+                                        </>
+                                        
+                                    ) : (<Button type="primarySecondary" classes="order-1 w-full">Xem khóa học</Button>)}
+                                    
                                 </div>
                             </div>
-                        </Link>
+                        </span>
                     </Tippy>
                 </SwiperSlide>
             ))}
@@ -148,11 +154,9 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
     return (
         <div className="py-12 bg-[#F5F7FA]">
             <div className="width-container mx-auto px-4 lg:px-0">
-                <h1 className="heading-02 text-center mb-10">
-                    Khóa học được bán nhiều
-                </h1>
+                <h1 className="heading-02 text-center mb-10">{title}</h1>
                 <SkeletonLoader
-                    data={courses}
+                    data={enrollments}
                     renderContent={renderContent}
                     renderSkeleton={renderSkeleton}
                 />
@@ -161,4 +165,4 @@ function Courses({ courses, quantityPerRow = 4, rowNumber = 1 }) {
     );
 }
 
-export default Courses;
+export default CoursesHas;
