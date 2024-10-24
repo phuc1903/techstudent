@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController\ContactController;
 use App\Http\Controllers\UserController\CoursesController;
+use App\Http\Controllers\UserController\DashboardController;
 use App\Http\Controllers\UserController\HomeController;
 
 use App\Http\Controllers\UserController\MessageController;
@@ -17,9 +18,6 @@ use Inertia\Inertia;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Page Settings
-
-Route::get('/settings/{user}', [SettingController::class, 'index'])->name('setting');
-Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
 
 // Single Course
 
@@ -48,11 +46,19 @@ Route::get('/about', function () {
     return Inertia::render('UserPages/About/Index');
 })->name("about");
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
 
-Route::get('/message', [MessageController::class, 'index'])->name('message');
+
+Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/courses', [DashboardController::class, 'courses'])->name('courses');
+    Route::get('/instructors', [DashboardController::class, 'instructors'])->name('instructors');
+    Route::get('/wishlists', [DashboardController::class, 'wishlists'])->name('wishlists');
+    Route::get('/purchaseHistories', [DashboardController::class, 'purchaseHistories'])->name('purchaseHistories');
+    Route::get('/settings', [DashboardController::class, 'settings'])->name('settings');
+    Route::put('/settings', [DashboardController::class, 'settingUpdate'])->name('setting.update');
+    Route::get('/message', [MessageController::class, 'index'])->name('message');
+});
+
 
 
 Route::middleware('auth')->group(function () {

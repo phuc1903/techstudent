@@ -5,7 +5,7 @@ import Feature from "./Components/Feature/Index";
 import Button from "@/Components/Button/Index";
 import Include from "./Components/Include/Index";
 import ShareCode from "@/Components/ShareCode/Index";
-import Tabs from "./Components/Tabs/Index";
+import Tabs from "@/Components/Tabs/Index";
 import React, { useEffect, useRef, useState } from "react";
 import CalculateStarRating from "@/Services/StarRating/CalculateStarRating";
 import RenderStars from "@/Services/StarRating/RenderStars";
@@ -159,6 +159,34 @@ const includes = [
     },
 ];
 
+
+const tabs = [
+    {
+        id: 1,
+        title: "Overview",
+        active: false,
+        href: "#overview"
+    },
+    {
+        id: 2,
+        title: "Curriculum",
+        active: false,  
+        href: "#curriculum"
+    },
+    {
+        id: 3,
+        title: "Instructor",
+        active: false,
+        href: "#instructor"
+    },
+    {
+        id: 4,
+        title: "Review",
+        active: false,
+        href: "#review"
+    },
+]
+
 function SingleCourse({ course }) {
     const stars = CalculateStarRating(course.ratings);
     const [height, setHeight] = useState("");
@@ -276,7 +304,7 @@ function SingleCourse({ course }) {
                                     </div>
                                 </div>
                                 <div className="scroll-smooth grid gap-10">
-                                    <Tabs />
+                                    <Tabs tabs={tabs} />
                                     <div className="grid gap-10">
                                         <div
                                             id="#description"
