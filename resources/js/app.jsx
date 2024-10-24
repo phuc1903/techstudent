@@ -8,6 +8,7 @@ import LayoutUser from './Layouts/LayoutUser/Index';
 import LayoutAdmin from './Layouts/LayoutAdmin/Index';
 import LayoutInstructor from './Layouts/LayoutInstructor/Index';
 import { TranslationProvider } from './Contexts/TranslationContext';
+import LayoutDasboardUser from './Layouts/LayoutDashboardUser/Index';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Tech Student';
 
@@ -21,7 +22,10 @@ createInertiaApp({
             page.default.layout = page.default.layout || ((page) => <LayoutAdmin children={page} />);
         } else if(name.startsWith('InstructorPages')) {
             page.default.layout = page.default.layout || ((page) => <LayoutInstructor children={page} />);
-        }else {
+        }else if(name.startsWith('UserPages/Dashboard')) {
+            page.default.layout = page.default.layout || ((page) => <LayoutDasboardUser children={page} />);
+        } 
+        else {
             page.default.layout = page.default.layout || ((page) => <LayoutUser children={page} />);
         }
 

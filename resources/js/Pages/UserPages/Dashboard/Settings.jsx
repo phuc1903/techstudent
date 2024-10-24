@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useForm as useReactHookForm } from "react-hook-form";
-import { useForm as useFormInertia } from "@inertiajs/react";
+import { useForm as useFormInertia, usePage } from "@inertiajs/react";
 import Image from "@/Components/Images/Index";
 import LayoutInstructor from "@/Layouts/LayoutInstructor/Index";
 import { Head } from "@inertiajs/react";
@@ -8,7 +8,9 @@ import CreateField from "@/Services/AuthServices/CreateField";
 import InputText from "@/Components/Inputs/InputText";
 import Button from "@/Components/Button/Index";
 
-function Settings({user}) {
+function Settings() {
+    const {auth} = usePage().props; 
+    const user =  auth.user;
     const {
         register,
         handleSubmit,
@@ -103,7 +105,7 @@ function Settings({user}) {
             },
         },
     });
-    
+
     const fieldTitle = CreateField({
         name: "title",
         register,
@@ -150,7 +152,7 @@ function Settings({user}) {
     return (
         <>
             <Head title="Setting" />
-            <div className="flex gap-6 size-full">
+            {/* <div className="flex gap-6 size-full">
                 <form
                     className="bg-white flex flex-col gap-[18px] size-full p-10"
                     onSubmit={handleSubmit(onSubmit)}
@@ -256,13 +258,14 @@ function Settings({user}) {
                         onChange={() => trigger(fieldBio.name)}
                     />
 
-                    <Button disabled={processing}>{processing ? "Đang lưu" : "Lưu thay đổi"}</Button>
+                    <Button disabled={processing}>
+                        {processing ? "Đang lưu" : "Lưu thay đổi"}
+                    </Button>
                 </form>
-            </div>
+            </div> */}
+            <h1>Settings</h1>
         </>
     );
 }
-
-Settings.layout = (page) => <LayoutInstructor children={page} />;
 
 export default Settings;
